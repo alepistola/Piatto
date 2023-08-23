@@ -16,28 +16,6 @@ namespace CartaAlta.Grpc
         {
             Console.WriteLine("-- Received {0}, From: {1}", Utils.Extensions.MoveToString(req.Move), req.SendingFrom);
 
-            /*
-            var transactionHash = Others.UkcUtils.GetTransactionHash(req.Transaction);
-            if (!transactionHash.Equals(req.Transaction.Hash))
-            {
-                return Task.FromResult(new TransactionStatus
-                {
-                    Status = Others.Constants.TXN_STATUS_FAIL,
-                    Message = "Invalid Transaction Hash"
-                });
-            }
-
-            var isSignatureValid = VerifySignature(req.Transaction);
-            if (!isSignatureValid)
-            {
-                return Task.FromResult(new TransactionStatus
-                {
-                    Status = Others.Constants.TXN_STATUS_FAIL,
-                    Message = "Invalid Signature"
-                });
-            }
-            */
-            //TODO add more validation here
             try
             {
                 ServicePool.DbService.MoveDb.Add(req.Move);
@@ -49,12 +27,12 @@ namespace CartaAlta.Grpc
                     Message = "Move received successfully!"
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Task.FromResult(new MoveStatus
                 {
-                    Status = true,
-                    Message = $"Error while processing move nr. {req.Move.Number}!"
+                    Status = false,
+                    Message = $"Error while processing move nr. {req.Move.Number} ({ex.Message})!"
                 });
 
             }            

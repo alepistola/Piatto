@@ -50,22 +50,6 @@ namespace CartaAlta.Game
         }
 
         public List<Card> GetCards() => _cards;
-        
-        /*
-        private static List<Card> GenerateDeckFromGrpcClass(List<Grpc.Card> cards)
-        {
-            var deck = new List<Card>();
-            for (int i = 0; i < cards.Count; i++)
-            {
-                var card = new Card
-                (
-                    seme: ((int)cards[i].Seme),
-                    valore: (cards[i].Valore)
-                );
-                deck.Add(card);
-            }
-            return deck;
-        }
-        */
+
     }
 }

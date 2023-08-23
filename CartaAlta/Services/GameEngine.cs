@@ -73,7 +73,6 @@ namespace CartaAlta.Services
         {
             //CheckIfILost()
             CheckForMinPlayers();
-            CheckPreviousMove();
 
             if (_piatto <= 0)
                 AskInitialBet();
@@ -91,7 +90,9 @@ namespace CartaAlta.Services
                 HasWin = card.Valore > 5,
                 Number = moveNr,
                 TimeStamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
-                Total = total
+                Total = total,
+                MoveType = MoveType.GameBet,
+                DrawnCard = card
             };
             BroadcastMove(move);
             // CheckIfILost()
@@ -114,11 +115,10 @@ namespace CartaAlta.Services
             var move = new Move()
             {
                 Author = _myName,
-                Bet = amount,
-                HasWin = false,
                 Number = moveNr,
                 TimeStamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
-                Total = amount
+                Total = amount,
+                MoveType = MoveType.InitialBet
             };
             BroadcastMove(move);
         }
@@ -208,11 +208,6 @@ namespace CartaAlta.Services
             return bet;
         }
 
-        private void CheckPreviousMove()
-        {
-            
-        }
-
         private void AskInitialBet()
         {
             try
@@ -266,8 +261,39 @@ namespace CartaAlta.Services
 
         public void UpdateState(Move mv)
         {
-            Console.WriteLine($"Updating game state according to move nr.{mv.Number} made by {mv.Author}");
+            Console.WriteLine($"Updating game state according to move #{mv.Number} made by {mv.Author}");
             var oldPiatto = _piatto;
+
+            switch (mv.MoveType)
+            {
+                case MoveType.InitialBet:
+                    UpdateStateForInitialBetMove(mv);
+                    break;
+                case MoveType.GameBet:
+                    UpdateStateForGameBetMove(mv);
+                    break;
+                default:
+                    break;
+            }
+            // Print game state or at least the new updated value.
+            Console.WriteLine($"Piatto was: {oldPiatto} euro now is: {_piatto} euro");
+        }
+
+        private void UpdateStateForInitialBetMove(Move mv)
+        {
+            _piatto += mv.Total;
+            _players[mv.Author].MakeBet(mv.Total);
+            _players[mv.Author].Lose(false);
+        }
+
+        private void UpdateStateForGameBetMove(Move mv)
+        {
+            Console.WriteLine($"Legit check for move #{mv.Number}");
+
+            bool legit = DrawAndCheckLegit(mv.DrawnCard);
+            if (!legit)
+                throw new GameException($"Card drawn by {mv.Author} not consistent with the one locally unveiled!");
+
             if (mv.HasWin)
             {
                 _piatto -= mv.Total;
@@ -279,9 +305,21 @@ namespace CartaAlta.Services
                 _players[mv.Author].MakeBet(mv.Total);
                 _players[mv.Author].Lose(false);
             }
-            _deck.Draw();
-            // Print game state or at least the new updated value.
-            Console.WriteLine($"Piatto was: {oldPiatto} euro now is: {_piatto} euro");
+        }
+
+        private bool DrawAndCheckLegit(Card remoteDrawn)
+        {
+            Card localUnveiled = _deck.Draw();
+            if (remoteDrawn.Seme == localUnveiled.Seme && remoteDrawn.Valore == localUnveiled.Valore)
+            {
+                Console.WriteLine("Legit check: ok");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Legit check: error");
+                return false;
+            }
         }
 
         private void EndGame(bool win)

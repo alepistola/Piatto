@@ -1,2 +1,3 @@
 obj\Release\net6.0\win-x64\Protos/Move.cs \
-obj\Release\net6.0\win-x64\Protos/MoveGrpc.cs: Protos/move.proto
+obj\Release\net6.0\win-x64\Protos/MoveGrpc.cs: Protos/game.proto\
+ Protos/move.proto

@@ -2,6 +2,8 @@
 
 option csharp_namespace = "CartaAlta.Grpc";
 
+import "Protos/game.proto";
+
 package move;
 
 service MoveService {
@@ -31,7 +33,14 @@ message Move{
   int32 number = 1;
   int64 timeStamp = 2;
   string author = 3;
-  double bet = 4;
-  bool hasWin = 5;
-  double total = 6;
+  MoveType moveType = 4;
+  optional game.Card drawnCard = 5;
+  optional double bet = 6;
+  optional bool hasWin = 7;
+  double total = 8; 
+}
+
+enum MoveType {
+	InitialBet = 0;
+	GameBet = 1;
 }

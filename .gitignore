@@ -1,9 +1,9 @@
 .vs/
-CartaAlta/DbFiles
-CartaAlta/NODES
-CartaAlta/obj
-CartaAlta/publish-win64
-CartaAlta/bin
-Lobby/.vs
-Lobby/obj
-Lobby/bin
+CartaAlta/DbFiles/
+CartaAlta/NODES/
+CartaAlta/obj/
+CartaAlta/publish-win64/
+CartaAlta/bin/
+Lobby/.vs/
+Lobby/obj/
+Lobby/bin/

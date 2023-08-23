@@ -24,29 +24,41 @@ namespace CartaAlta.Grpc {
     static MoveReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChFQcm90b3MvbW92ZS5wcm90bxIEbW92ZSI6CghNb3ZlUG9zdBIYCgRtb3Zl",
-            "GAEgASgLMgoubW92ZS5Nb3ZlEhQKDHNlbmRpbmdfZnJvbRgCIAEoCSItCgpN",
-            "b3ZlU3RhdHVzEg4KBnN0YXR1cxgBIAEoCBIPCgdtZXNzYWdlGAIgASgJIiUK",
-            "CE1vdmVMaXN0EhkKBW1vdmVzGAEgAygLMgoubW92ZS5Nb3ZlIh8KDVJlcXVl",
-            "c3ROdW1iZXISDgoGbnVtYmVyGAEgASgFImUKBE1vdmUSDgoGbnVtYmVyGAEg",
-            "ASgFEhEKCXRpbWVTdGFtcBgCIAEoAxIOCgZhdXRob3IYAyABKAkSCwoDYmV0",
-            "GAQgASgBEg4KBmhhc1dpbhgFIAEoCBINCgV0b3RhbBgGIAEoATJwCgtNb3Zl",
-            "U2VydmljZRIxCg1Ccm9hZGNhc3RNb3ZlEg4ubW92ZS5Nb3ZlUG9zdBoQLm1v",
-            "dmUuTW92ZVN0YXR1cxIuCgtHZXRCeU51bWJlchITLm1vdmUuUmVxdWVzdE51",
-            "bWJlchoKLm1vdmUuTW92ZUIRqgIOQ2FydGFBbHRhLkdycGNiBnByb3RvMw=="));
+            "ChFQcm90b3MvbW92ZS5wcm90bxIEbW92ZRoRUHJvdG9zL2dhbWUucHJvdG8i",
+            "OgoITW92ZVBvc3QSGAoEbW92ZRgBIAEoCzIKLm1vdmUuTW92ZRIUCgxzZW5k",
+            "aW5nX2Zyb20YAiABKAkiLQoKTW92ZVN0YXR1cxIOCgZzdGF0dXMYASABKAgS",
+            "DwoHbWVzc2FnZRgCIAEoCSIlCghNb3ZlTGlzdBIZCgVtb3ZlcxgBIAMoCzIK",
+            "Lm1vdmUuTW92ZSIfCg1SZXF1ZXN0TnVtYmVyEg4KBm51bWJlchgBIAEoBSLW",
+            "AQoETW92ZRIOCgZudW1iZXIYASABKAUSEQoJdGltZVN0YW1wGAIgASgDEg4K",
+            "BmF1dGhvchgDIAEoCRIgCghtb3ZlVHlwZRgEIAEoDjIOLm1vdmUuTW92ZVR5",
+            "cGUSIgoJZHJhd25DYXJkGAUgASgLMgouZ2FtZS5DYXJkSACIAQESEAoDYmV0",
+            "GAYgASgBSAGIAQESEwoGaGFzV2luGAcgASgISAKIAQESDQoFdG90YWwYCCAB",
+            "KAFCDAoKX2RyYXduQ2FyZEIGCgRfYmV0QgkKB19oYXNXaW4qJwoITW92ZVR5",
+            "cGUSDgoKSW5pdGlhbEJldBAAEgsKB0dhbWVCZXQQATJwCgtNb3ZlU2Vydmlj",
+            "ZRIxCg1Ccm9hZGNhc3RNb3ZlEg4ubW92ZS5Nb3ZlUG9zdBoQLm1vdmUuTW92",
+            "ZVN0YXR1cxIuCgtHZXRCeU51bWJlchITLm1vdmUuUmVxdWVzdE51bWJlchoK",
+            "Lm1vdmUuTW92ZUIRqgIOQ2FydGFBbHRhLkdycGNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::FileDescriptor[] { global::CartaAlta.Grpc.GameReflection.Descriptor, },
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CartaAlta.Grpc.MoveType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.MovePost), global::CartaAlta.Grpc.MovePost.Parser, new[]{ "Move", "SendingFrom" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.MoveStatus), global::CartaAlta.Grpc.MoveStatus.Parser, new[]{ "Status", "Message" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.MoveList), global::CartaAlta.Grpc.MoveList.Parser, new[]{ "Moves" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.RequestNumber), global::CartaAlta.Grpc.RequestNumber.Parser, new[]{ "Number" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Move), global::CartaAlta.Grpc.Move.Parser, new[]{ "Number", "TimeStamp", "Author", "Bet", "HasWin", "Total" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Move), global::CartaAlta.Grpc.Move.Parser, new[]{ "Number", "TimeStamp", "Author", "MoveType", "DrawnCard", "Bet", "HasWin", "Total" }, new[]{ "DrawnCard", "Bet", "HasWin" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum MoveType {
+    [pbr::OriginalName("InitialBet")] InitialBet = 0,
+    [pbr::OriginalName("GameBet")] GameBet = 1,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class MovePost : pb::IMessage<MovePost>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -883,6 +895,7 @@ namespace CartaAlta.Grpc {
   {
     private static readonly pb::MessageParser<Move> _parser = new pb::MessageParser<Move>(() => new Move());
     private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pb::MessageParser<Move> Parser { get { return _parser; } }
@@ -910,9 +923,12 @@ namespace CartaAlta.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Move(Move other) : this() {
+      _hasBits0 = other._hasBits0;
       number_ = other.number_;
       timeStamp_ = other.timeStamp_;
       author_ = other.author_;
+      moveType_ = other.moveType_;
+      drawnCard_ = other.drawnCard_ != null ? other.drawnCard_.Clone() : null;
       bet_ = other.bet_;
       hasWin_ = other.hasWin_;
       total_ = other.total_;
@@ -961,32 +977,86 @@ namespace CartaAlta.Grpc {
       }
     }
 
+    /// <summary>Field number for the "moveType" field.</summary>
+    public const int MoveTypeFieldNumber = 4;
+    private global::CartaAlta.Grpc.MoveType moveType_ = global::CartaAlta.Grpc.MoveType.InitialBet;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::CartaAlta.Grpc.MoveType MoveType {
+      get { return moveType_; }
+      set {
+        moveType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "drawnCard" field.</summary>
+    public const int DrawnCardFieldNumber = 5;
+    private global::CartaAlta.Grpc.Card drawnCard_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::CartaAlta.Grpc.Card DrawnCard {
+      get { return drawnCard_; }
+      set {
+        drawnCard_ = value;
+      }
+    }
+
     /// <summary>Field number for the "bet" field.</summary>
-    public const int BetFieldNumber = 4;
+    public const int BetFieldNumber = 6;
+    private readonly static double BetDefaultValue = 0D;
+
     private double bet_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Bet {
-      get { return bet_; }
+      get { if ((_hasBits0 & 1) != 0) { return bet_; } else { return BetDefaultValue; } }
       set {
+        _hasBits0 |= 1;
         bet_ = value;
       }
     }
+    /// <summary>Gets whether the "bet" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasBet {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "bet" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearBet() {
+      _hasBits0 &= ~1;
+    }
 
     /// <summary>Field number for the "hasWin" field.</summary>
-    public const int HasWinFieldNumber = 5;
+    public const int HasWinFieldNumber = 7;
+    private readonly static bool HasWinDefaultValue = false;
+
     private bool hasWin_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasWin {
-      get { return hasWin_; }
+      get { if ((_hasBits0 & 2) != 0) { return hasWin_; } else { return HasWinDefaultValue; } }
       set {
+        _hasBits0 |= 2;
         hasWin_ = value;
       }
     }
+    /// <summary>Gets whether the "hasWin" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasHasWin {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "hasWin" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearHasWin() {
+      _hasBits0 &= ~2;
+    }
 
     /// <summary>Field number for the "total" field.</summary>
-    public const int TotalFieldNumber = 6;
+    public const int TotalFieldNumber = 8;
     private double total_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1015,6 +1085,8 @@ namespace CartaAlta.Grpc {
       if (Number != other.Number) return false;
       if (TimeStamp != other.TimeStamp) return false;
       if (Author != other.Author) return false;
+      if (MoveType != other.MoveType) return false;
+      if (!object.Equals(DrawnCard, other.DrawnCard)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Bet, other.Bet)) return false;
       if (HasWin != other.HasWin) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Total, other.Total)) return false;
@@ -1028,8 +1100,10 @@ namespace CartaAlta.Grpc {
       if (Number != 0) hash ^= Number.GetHashCode();
       if (TimeStamp != 0L) hash ^= TimeStamp.GetHashCode();
       if (Author.Length != 0) hash ^= Author.GetHashCode();
-      if (Bet != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Bet);
-      if (HasWin != false) hash ^= HasWin.GetHashCode();
+      if (MoveType != global::CartaAlta.Grpc.MoveType.InitialBet) hash ^= MoveType.GetHashCode();
+      if (drawnCard_ != null) hash ^= DrawnCard.GetHashCode();
+      if (HasBet) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Bet);
+      if (HasHasWin) hash ^= HasWin.GetHashCode();
       if (Total != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Total);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1061,16 +1135,24 @@ namespace CartaAlta.Grpc {
         output.WriteRawTag(26);
         output.WriteString(Author);
       }
-      if (Bet != 0D) {
-        output.WriteRawTag(33);
+      if (MoveType != global::CartaAlta.Grpc.MoveType.InitialBet) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) MoveType);
+      }
+      if (drawnCard_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(DrawnCard);
+      }
+      if (HasBet) {
+        output.WriteRawTag(49);
         output.WriteDouble(Bet);
       }
-      if (HasWin != false) {
-        output.WriteRawTag(40);
+      if (HasHasWin) {
+        output.WriteRawTag(56);
         output.WriteBool(HasWin);
       }
       if (Total != 0D) {
-        output.WriteRawTag(49);
+        output.WriteRawTag(65);
         output.WriteDouble(Total);
       }
       if (_unknownFields != null) {
@@ -1095,16 +1177,24 @@ namespace CartaAlta.Grpc {
         output.WriteRawTag(26);
         output.WriteString(Author);
       }
-      if (Bet != 0D) {
-        output.WriteRawTag(33);
+      if (MoveType != global::CartaAlta.Grpc.MoveType.InitialBet) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) MoveType);
+      }
+      if (drawnCard_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(DrawnCard);
+      }
+      if (HasBet) {
+        output.WriteRawTag(49);
         output.WriteDouble(Bet);
       }
-      if (HasWin != false) {
-        output.WriteRawTag(40);
+      if (HasHasWin) {
+        output.WriteRawTag(56);
         output.WriteBool(HasWin);
       }
       if (Total != 0D) {
-        output.WriteRawTag(49);
+        output.WriteRawTag(65);
         output.WriteDouble(Total);
       }
       if (_unknownFields != null) {
@@ -1126,10 +1216,16 @@ namespace CartaAlta.Grpc {
       if (Author.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Author);
       }
-      if (Bet != 0D) {
+      if (MoveType != global::CartaAlta.Grpc.MoveType.InitialBet) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MoveType);
+      }
+      if (drawnCard_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(DrawnCard);
+      }
+      if (HasBet) {
         size += 1 + 8;
       }
-      if (HasWin != false) {
+      if (HasHasWin) {
         size += 1 + 1;
       }
       if (Total != 0D) {
@@ -1156,10 +1252,19 @@ namespace CartaAlta.Grpc {
       if (other.Author.Length != 0) {
         Author = other.Author;
       }
-      if (other.Bet != 0D) {
+      if (other.MoveType != global::CartaAlta.Grpc.MoveType.InitialBet) {
+        MoveType = other.MoveType;
+      }
+      if (other.drawnCard_ != null) {
+        if (drawnCard_ == null) {
+          DrawnCard = new global::CartaAlta.Grpc.Card();
+        }
+        DrawnCard.MergeFrom(other.DrawnCard);
+      }
+      if (other.HasBet) {
         Bet = other.Bet;
       }
-      if (other.HasWin != false) {
+      if (other.HasHasWin) {
         HasWin = other.HasWin;
       }
       if (other.Total != 0D) {
@@ -1192,15 +1297,26 @@ namespace CartaAlta.Grpc {
             Author = input.ReadString();
             break;
           }
-          case 33: {
-            Bet = input.ReadDouble();
+          case 32: {
+            MoveType = (global::CartaAlta.Grpc.MoveType) input.ReadEnum();
             break;
           }
-          case 40: {
-            HasWin = input.ReadBool();
+          case 42: {
+            if (drawnCard_ == null) {
+              DrawnCard = new global::CartaAlta.Grpc.Card();
+            }
+            input.ReadMessage(DrawnCard);
             break;
           }
           case 49: {
+            Bet = input.ReadDouble();
+            break;
+          }
+          case 56: {
+            HasWin = input.ReadBool();
+            break;
+          }
+          case 65: {
             Total = input.ReadDouble();
             break;
           }
@@ -1231,15 +1347,26 @@ namespace CartaAlta.Grpc {
             Author = input.ReadString();
             break;
           }
-          case 33: {
-            Bet = input.ReadDouble();
+          case 32: {
+            MoveType = (global::CartaAlta.Grpc.MoveType) input.ReadEnum();
             break;
           }
-          case 40: {
-            HasWin = input.ReadBool();
+          case 42: {
+            if (drawnCard_ == null) {
+              DrawnCard = new global::CartaAlta.Grpc.Card();
+            }
+            input.ReadMessage(DrawnCard);
             break;
           }
           case 49: {
+            Bet = input.ReadDouble();
+            break;
+          }
+          case 56: {
+            HasWin = input.ReadBool();
+            break;
+          }
+          case 65: {
             Total = input.ReadDouble();
             break;
           }
