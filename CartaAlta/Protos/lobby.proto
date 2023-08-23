@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "CartaAlta.Grpc";
+
+package lobby;
+
+service Matchmaking {
+	rpc RegisterForMatch (Peer) returns (RegisterReply);
+	rpc StartMatch (StartMatchInfo) returns (StartMatchAck);
+}
+
+message Peer {
+	int32 id = 1;
+	optional string name = 2;
+	string address = 3;
+}
+
+message RegisterReply {
+	int32 gameNumber = 1;
+	int32 playerNumber = 2;
+}
+
+message StartMatchInfo {
+	repeated Peer peerList = 1;
+	bool dealer = 2;
+}
+
+message StartMatchAck {
+	bool status = 1;
+}

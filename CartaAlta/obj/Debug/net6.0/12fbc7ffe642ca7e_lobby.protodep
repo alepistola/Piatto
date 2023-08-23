@@ -1,0 +1,2 @@
+obj\Debug\net6.0\Protos/Lobby.cs \
+obj\Debug\net6.0\Protos/LobbyGrpc.cs: Protos/lobby.proto

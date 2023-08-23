@@ -1,0 +1,41 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "CartaAlta.Grpc";
+
+package game;
+
+service GameService {
+  rpc PassTurn(PassTurnRequest) returns (GameServiceResponse);
+  rpc SyncDeck(DeckState) returns (GameServiceResponse);
+  rpc AskInitialBet(InitialBetRequest) returns (GameServiceResponse);
+}
+
+message PassTurnRequest {
+    bool dealer = 1;
+}
+
+message GameServiceResponse{
+  bool status = 1;
+  optional string message = 2;
+}
+
+message DeckState {
+  repeated Card cards = 1;
+  string dealerName = 2;
+}
+
+message Card {
+  int32 valore = 1;
+  Seme seme = 2; 
+}
+
+enum Seme {
+    Coppe = 0;
+    Denari = 1;
+    Spade = 2;
+    Bastoni = 3;
+}
+
+message InitialBetRequest {
+    double amount = 1;
+}

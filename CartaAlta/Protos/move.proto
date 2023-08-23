@@ -1,0 +1,37 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "CartaAlta.Grpc";
+
+package move;
+
+service MoveService {
+  rpc BroadcastMove(MovePost) returns (MoveStatus);
+  rpc GetByNumber(RequestNumber) returns (Move);
+}
+
+message MovePost{
+  Move move = 1;
+  string sending_from = 2;
+}
+
+message MoveStatus{
+  bool status = 1;
+  string message = 2;
+}
+
+message MoveList {
+  repeated Move moves = 1;
+}
+
+message RequestNumber {
+	int32 number = 1;
+}
+
+message Move{
+  int32 number = 1;
+  int64 timeStamp = 2;
+  string author = 3;
+  double bet = 4;
+  bool hasWin = 5;
+  double total = 6;
+}
