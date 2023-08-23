@@ -29,6 +29,8 @@ namespace CartaAlta.Services
             //stop when application exit
         }
 
+
+
         public static void InitializeWithPeers(List<Peer> peerList, bool isDealer)
         {
             GameEngine = new GameEngine(peerList, isDealer);

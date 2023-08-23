@@ -31,6 +31,7 @@ namespace CartaAlta
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseSystemd()
+                .UseConsoleLifetime(opts => opts.SuppressStatusMessages = true)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.ConfigureKestrel(options =>

@@ -1,4 +1,5 @@
 ﻿using CartaAlta.Grpc;
+using CartaAlta.Services;
 
 namespace CartaAlta
 {
@@ -16,13 +17,23 @@ namespace CartaAlta
             }));
         }
 
-        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime appLifetime)
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else
                 app.UseExceptionHandler("/Error");
 
+            appLifetime.ApplicationStarted.Register(() => {
+                Console.WriteLine("Press Ctrl+C to shut down.");
+            });
+
+            appLifetime.ApplicationStopped.Register(() => {
+                Console.WriteLine("Terminating application...");
+                Console.WriteLine("Stopping services...");
+                ServicePool.Stop();
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            });
 
             app.UseRouting();
             // add support grpc call from web app, Must be added between UseRouting and UseEndpoints

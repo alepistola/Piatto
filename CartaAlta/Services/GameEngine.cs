@@ -249,7 +249,7 @@ namespace CartaAlta.Services
         private void ShuffleDeck()
         {
             _deck.Shuffle();
-            ServicePool.P2PService.SendSynDeckRequest(_deck);
+            ServicePool.P2PService.SendSynDeckRequests(_deck);
         }
 
         private void CheckForMinPlayers()

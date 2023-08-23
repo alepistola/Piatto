@@ -38,7 +38,7 @@ namespace CartaAlta.P2P
             return (peers.SkipWhile(x => x.Address != _nodeAddress).Skip(skipping).DefaultIfEmpty(peers[0]).FirstOrDefault());
         }
 
-        public void SendSynDeckRequest(Deck deck)
+        public void SendSynDeckRequests(Deck deck)
         {
             var knownPeers = ServicePool.DbService.PeerDb.GetAllToList();
 
@@ -64,18 +64,11 @@ namespace CartaAlta.P2P
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
-                        // Console.WriteLine(".. Failed to send syn deck request to {0}", peer.Address);
+                        Console.WriteLine(".. Failed to send syn deck request to {0}", peer.Address);
                         // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
                     }
                 }
             }
-
-            /*
-            Parallel.ForEach(knownPeers, peer =>
-            {
-                
-            });
-            */
         }
 
         public void BroadcastMove(Move mv)
@@ -103,20 +96,14 @@ namespace CartaAlta.P2P
                         else
                             Console.WriteLine("--- Syn move request sent but ack not received from {0}", peer.Address);
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Console.WriteLine(ex.Message);
                         Console.WriteLine(".. Failed to send broadcast request to {0}", peer.Address);
                         // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
                     }
                 }
             }
-
-            /*
-            Parallel.ForEach(knownPeers, peer =>
-            {
-                
-            });
-            */
         }
 
         public void PassTurn(bool nextDealer)
@@ -168,12 +155,6 @@ namespace CartaAlta.P2P
                     }
                 }
             }
-            /*
-            Parallel.ForEach(knownPeers, peer =>
-            {
-                
-            });
-            */
         }
     }
 }
