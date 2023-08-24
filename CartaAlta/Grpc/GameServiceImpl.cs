@@ -60,7 +60,7 @@ namespace CartaAlta.Grpc
                 return Task.FromResult(new GameServiceResponse
                 {
                     Status = false,
-                    Message = String.Format("Error occured while processing pass turn request")
+                    Message = String.Format($"Error occured while processing pass turn request {e.Message}")
                 });
             }
         }
@@ -89,6 +89,43 @@ namespace CartaAlta.Grpc
                 {
                     Status = false,
                     Message = String.Format("Error occured while trying to make the initial bet")
+                });
+            }
+        }
+
+        public override Task<GameServiceResponse> EndGame(EndGameRequest request, ServerCallContext context)
+        {
+            try
+            {
+                Console.WriteLine("-- Received terminate game request from {0}", request.ToRemove);
+
+                if (ServicePool.DbService.PeerDb.RemoveByAddress(request.ToRemove) == 1)
+                {
+                    ServicePool.P2PService.UpdateAdjacentPeer();
+                    Console.WriteLine($"-- Removed peer {request.ToRemove}, new adjacent peer {ServicePool.P2PService.GetAdjacentNodeAddress()}");
+
+                    return Task.FromResult(new GameServiceResponse
+                    {
+                        Status = true,
+                        Message = String.Format("Initial bet just made")
+                    });
+                }
+                else
+                {
+                    return Task.FromResult(new GameServiceResponse
+                    {
+                        Status = false,
+                        Message = String.Format($"Peer {request.ToRemove} not found!")
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Task.FromResult(new GameServiceResponse
+                {
+                    Status = false,
+                    Message = String.Format($"Error occured while trying to remove {request.ToRemove}")
                 });
             }
         }

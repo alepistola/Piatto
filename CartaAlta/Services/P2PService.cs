@@ -13,7 +13,7 @@ namespace CartaAlta.P2P
     public class P2PService
     {
         private readonly string _nodeAddress;
-        private readonly Peer? _adjacentNode;
+        private Peer? _adjacentNode;
         private readonly string _nodeName;
 
         public P2PService()
@@ -32,11 +32,18 @@ namespace CartaAlta.P2P
             return (peers.SkipWhile(x => x.Address != _nodeAddress).Skip(1).DefaultIfEmpty(peers[0]).FirstOrDefault());
         }
 
-        private Peer? FindAdjacentPeer(int skipping)
+        // In theory it returns _nodeAddress if it is empty
+        public void UpdateAdjacentPeer()
         {
             var peers = ServicePool.DbService.PeerDb.GetAllToList();
-            return (peers.SkipWhile(x => x.Address != _nodeAddress).Skip(skipping).DefaultIfEmpty(peers[0]).FirstOrDefault());
+            _adjacentNode = (peers.SkipWhile(x => x.Address != _nodeAddress).Skip(1).DefaultIfEmpty(peers[0]).FirstOrDefault());
         }
+
+        public string GetAdjacentNodeAddress()
+        {
+            return _adjacentNode?.Address ?? _nodeAddress;
+        }
+
 
         public void SendSynDeckRequests(Deck deck)
         {
@@ -151,6 +158,38 @@ namespace CartaAlta.P2P
                     {
                         Console.WriteLine(ex.Message);
                         Console.WriteLine(".. Failed to send initial bet request to {0}", peer.Address);
+                        // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
+                    }
+                }
+            }
+        }
+
+        public void NotifyEndGame()
+        {
+            var knownPeers = ServicePool.DbService.PeerDb.GetAllToList();
+
+            foreach (var peer in knownPeers)
+            {
+                if (!_nodeAddress.Equals(peer.Address))
+                {
+                    Console.WriteLine("-- Sending terminate game request to {0}", peer.Address);
+                    GrpcChannel channel = GrpcChannel.ForAddress(peer.Address);
+                    var gameService = new GameService.GameServiceClient(channel);
+                    try
+                    {
+                        var response = gameService.EndGame(new EndGameRequest { ToRemove = _nodeAddress});
+                        if (response.Status == true)
+                            Console.WriteLine("--- Done: received terminate game ack from {0}", peer.Address);
+                        else
+                        {
+                            Console.WriteLine("--- Terminate game request sent ack from {0} received with error:", peer.Address);
+                            Console.WriteLine($"--- {response.Message}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(".. Failed to send terminate game request to {0}", peer.Address);
                         // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
                     }
                 }

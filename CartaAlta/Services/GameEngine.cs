@@ -71,7 +71,6 @@ namespace CartaAlta.Services
 
         private void MakeTurn()
         {
-            //CheckIfILost()
             CheckForMinPlayers();
 
             if (_piatto <= 0)
@@ -95,7 +94,20 @@ namespace CartaAlta.Services
                 DrawnCard = card
             };
             BroadcastMove(move);
-            // CheckIfILost()
+            CheckIfILost();
+        }
+
+        private void CheckIfILost()
+        {
+            if (_players[_myName].HaveLost())
+            {
+                // Send remove notify to others peer? or just leave and let them find out?
+                ServicePool.P2PService.NotifyEndGame();
+                PrintEndGame(false);
+            }
+                
+
+            
         }
 
         public void MakeTurnAndPass()
@@ -161,7 +173,7 @@ namespace CartaAlta.Services
             if (amountBet > _players[_myName].Balance)
             {
                 _piatto += _players[_myName].Balance;
-                Console.WriteLine($"You lose -> balance: 0 euro");
+                Console.WriteLine($"You lose all of your euro");
             }
             else
             {
@@ -249,7 +261,8 @@ namespace CartaAlta.Services
 
         private void CheckForMinPlayers()
         {
-            if(_players.Count < 2)
+            var playingPlayersNr = _players.Where(p => !(p.Value.HaveLost())).Count();
+            if(_players.Count < 2 || playingPlayersNr < 2)
                 throw new GameException("Not enough players to play a turn");
         }
 
@@ -322,11 +335,11 @@ namespace CartaAlta.Services
             }
         }
 
-        private void EndGame(bool win)
+        private void PrintEndGame(bool win)
         {
             Console.WriteLine("****** GAME FINISHED ******");
 
-            if(!win) Console.WriteLine("*** You lost!");
+            if(!win) Console.WriteLine("*** You lost! ***");
             else {
                 var lastPlayerBalance = _players[_myName].Balance;
                 Console.WriteLine("*** Last player remained with {0}", lastPlayerBalance);

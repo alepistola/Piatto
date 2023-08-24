@@ -8,10 +8,15 @@ service GameService {
   rpc PassTurn(PassTurnRequest) returns (GameServiceResponse);
   rpc SyncDeck(DeckState) returns (GameServiceResponse);
   rpc AskInitialBet(InitialBetRequest) returns (GameServiceResponse);
+  rpc EndGame(EndGameRequest) returns (GameServiceResponse);
 }
 
 message PassTurnRequest {
     bool dealer = 1;
+}
+
+message EndGameRequest {
+    string toRemove = 1;
 }
 
 message GameServiceResponse{

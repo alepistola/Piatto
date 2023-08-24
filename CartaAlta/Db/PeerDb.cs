@@ -85,5 +85,11 @@ namespace CartaAlta.Db
 
             return peers.FindOne(x => x.Address == address);
         }
+
+        public int RemoveByAddress(string address)
+        {
+            var deletedCount = _db.GetCollection<Peer>(Utils.Constants.TBL_PEERS).DeleteMany(p => p.Address == address);
+            return deletedCount;
+        }
     }
 }
