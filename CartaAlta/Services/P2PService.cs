@@ -15,6 +15,7 @@ namespace CartaAlta.P2P
         private readonly string _nodeAddress;
         private Peer? _adjacentNode;
         private readonly string _nodeName;
+        private bool _endGameRequestSent = false;
 
         public P2PService()
         {
@@ -118,6 +119,7 @@ namespace CartaAlta.P2P
             try
             {
                 if (_adjacentNode is null) throw new GameException("No adjacent node found!");
+                if (_adjacentNode.Address == _nodeAddress) throw new GameException("No adjacent node found!", true);
                 Console.WriteLine("-- Passing turn to {0}", _adjacentNode.Address);
                 GrpcChannel channel = GrpcChannel.ForAddress(_adjacentNode.Address);
                 var gameService = new GameService.GameServiceClient(channel);
@@ -166,6 +168,7 @@ namespace CartaAlta.P2P
 
         public void NotifyEndGame()
         {
+            _endGameRequestSent = true;
             var knownPeers = ServicePool.DbService.PeerDb.GetAllToList();
 
             foreach (var peer in knownPeers)
@@ -194,6 +197,12 @@ namespace CartaAlta.P2P
                     }
                 }
             }
+        }
+
+        public void Stop()
+        {
+            if(!(_endGameRequestSent))
+                NotifyEndGame();
         }
     }
 }

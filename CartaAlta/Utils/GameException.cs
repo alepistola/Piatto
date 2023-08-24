@@ -3,7 +3,8 @@
     [Serializable]
     public class GameException : Exception
     {
-        public string? exceptionMessage { get; }
+        public string? ExceptionMessage { get; }
+        public bool IsTheOnlyPlayer { get; }
 
         public GameException() { }
 
@@ -13,10 +14,15 @@
         public GameException(string message, Exception inner)
             : base(message, inner) { }
 
-        public GameException(string message, string studentName)
+        public GameException(string message, string exceptionMessage)
             : this(message)
         {
-            exceptionMessage = studentName;
+            ExceptionMessage = exceptionMessage;
+        }
+
+        public GameException(string message, bool isTheOnlyPlayer) : base(message)
+        {
+            IsTheOnlyPlayer = isTheOnlyPlayer;
         }
     }
 }

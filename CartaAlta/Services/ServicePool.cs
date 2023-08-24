@@ -6,7 +6,7 @@ namespace CartaAlta.Services
     public static class ServicePool
     {
         public static IService MatchmakingService { set; get; }
-        public static GameEngine GameEngine{ set; get; }
+        public static GameEngine GameEngine { set; get; }
         public static DbService DbService { set; get; }
         public static P2PService P2PService { get; set; }
 
@@ -25,11 +25,10 @@ namespace CartaAlta.Services
 
         public static void Stop()
         {
-            DbService.Stop();
             //stop when application exit
+            P2PService.Stop();
+            DbService.Stop();
         }
-
-
 
         public static void InitializeWithPeers(List<Peer> peerList, bool isDealer)
         {

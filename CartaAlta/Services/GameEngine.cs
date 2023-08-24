@@ -33,7 +33,10 @@ namespace CartaAlta.Services
                 Console.WriteLine("You're not the dealer, just wait for your turn..");
                 return;
             }
-            Thread.Sleep(10000);
+            Thread.Sleep(2000);
+
+            if (!(CheckForMinPlayers()))
+                return;
 
             if (!(TurnNr < 2))
             {
@@ -50,7 +53,16 @@ namespace CartaAlta.Services
             MakeTurn();
 
             TurnNr++;
-            PassTurn(false);
+
+            try
+            {
+                PassTurn(false);
+            }
+            catch (GameException)
+            {
+                return;
+            }
+            
         }
 
         private void PrintGameState()
@@ -71,7 +83,8 @@ namespace CartaAlta.Services
 
         private void MakeTurn()
         {
-            CheckForMinPlayers();
+            if (!(CheckForMinPlayers()))
+                return;
 
             if (_piatto <= 0)
                 AskInitialBet();
@@ -101,13 +114,10 @@ namespace CartaAlta.Services
         {
             if (_players[_myName].HaveLost())
             {
-                // Send remove notify to others peer? or just leave and let them find out?
                 ServicePool.P2PService.NotifyEndGame();
-                PrintEndGame(false);
+                PrintEndGame(false); // Send remove notify to others peer? or just leave and let them find out?
             }
                 
-
-            
         }
 
         public void MakeTurnAndPass()
@@ -250,6 +260,8 @@ namespace CartaAlta.Services
             catch (GameException ex)
             {
                 Console.WriteLine(ex.Message);
+                if (ex.IsTheOnlyPlayer)
+                    throw;
             }
         }
 
@@ -259,11 +271,15 @@ namespace CartaAlta.Services
             ServicePool.P2PService.SendSynDeckRequests(_deck);
         }
 
-        private void CheckForMinPlayers()
+        private bool CheckForMinPlayers()
         {
             var playingPlayersNr = _players.Where(p => !(p.Value.HaveLost())).Count();
             if(_players.Count < 2 || playingPlayersNr < 2)
-                throw new GameException("Not enough players to play a turn");
+            {
+                PrintEndGame(true);
+                return false;
+            }
+            return true;
         }
 
         private static void BroadcastMove(Move mv)
@@ -337,14 +353,16 @@ namespace CartaAlta.Services
 
         private void PrintEndGame(bool win)
         {
-            Console.WriteLine("****** GAME FINISHED ******");
+            Console.WriteLine("\n****** GAME FINISHED ******");
 
-            if(!win) Console.WriteLine("*** You lost! ***");
+            if(!win) Console.WriteLine("****** You lost! ******");
             else {
                 var lastPlayerBalance = _players[_myName].Balance;
                 Console.WriteLine("*** Last player remained with {0}", lastPlayerBalance);
                 Console.WriteLine("*** You win!");
             }
+
+            Console.WriteLine("\nPress Ctrl+C to shut down...");
         }
 
 
