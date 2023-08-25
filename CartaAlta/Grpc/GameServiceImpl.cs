@@ -107,7 +107,7 @@ namespace CartaAlta.Grpc
                     return Task.FromResult(new GameServiceResponse
                     {
                         Status = true,
-                        Message = String.Format("Initial bet just made")
+                        Message = String.Format("Correctly removed peer!")
                     });
                 }
                 else

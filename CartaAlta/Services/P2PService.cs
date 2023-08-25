@@ -3,6 +3,7 @@ using Grpc.Net.Client;
 using CartaAlta.Grpc;
 using CartaAlta.Game;
 using CartaAlta.Utils;
+using Grpc.Core;
 
 namespace CartaAlta.P2P
 {
@@ -69,6 +70,11 @@ namespace CartaAlta.P2P
                         else
                             Console.WriteLine("--- Syn deck request sent but ack not received from {0}", peer.Address);
                     }
+                    catch(RpcException)
+                    {
+                        Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
+                        HandlePeerCrash(peer.Address);
+                    }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
@@ -76,6 +82,20 @@ namespace CartaAlta.P2P
                         // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
                     }
                 }
+            }
+        }
+
+        private void HandlePeerCrash(string address)
+        {
+            if (ServicePool.DbService.PeerDb.RemoveByAddress(address) == 1)
+            {
+                ServicePool.P2PService.UpdateAdjacentPeer();
+                Console.WriteLine($"--- Removed peer {address}, new adjacent peer {ServicePool.P2PService.GetAdjacentNodeAddress()}");
+                NotifyEndGameByAddress(address);
+            }
+            else
+            {
+                throw new GameException($"Peer {address} not found!");
             }
         }
 
@@ -104,6 +124,11 @@ namespace CartaAlta.P2P
                         else
                             Console.WriteLine("--- Syn move request sent but ack not received from {0}", peer.Address);
                     }
+                    catch (RpcException)
+                    {
+                        Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
+                        HandlePeerCrash(peer.Address);
+                    }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
@@ -128,6 +153,11 @@ namespace CartaAlta.P2P
                     Console.WriteLine("--- Done: correctly passed!");
                 else
                     Console.WriteLine("--- Pass turn request sent but ack not received from {0} (Err: {1})", _adjacentNode.Address, response.Message);
+            }
+            catch (RpcException)
+            {
+                Console.WriteLine($"--- Fail: impossible to reach {_adjacentNode.Address}, it may have crashed");
+                HandlePeerCrash(_adjacentNode.Address);
             }
             catch (Exception ex)
             {
@@ -155,6 +185,11 @@ namespace CartaAlta.P2P
                             Console.WriteLine("--- Done: received initial bet ack from {0}", peer.Address);
                         else
                             Console.WriteLine("--- Initial bet request sent but ack not received from {0}", peer.Address);
+                    }
+                    catch (RpcException)
+                    {
+                        Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
+                        HandlePeerCrash(peer.Address);
                     }
                     catch (Exception ex)
                     {
@@ -193,6 +228,43 @@ namespace CartaAlta.P2P
                     {
                         Console.WriteLine(ex.Message);
                         Console.WriteLine(".. Failed to send terminate game request to {0}", peer.Address);
+                        // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
+                    }
+                }
+            }
+        }
+
+        private void NotifyEndGameByAddress(string toBeRemoved)
+        {
+            var knownPeers = ServicePool.DbService.PeerDb.GetAllToList();
+
+            foreach (var peer in knownPeers)
+            {
+                if (!_nodeAddress.Equals(peer.Address))
+                {
+                    Console.WriteLine("-- Sending remove peer request to {0} for {1}", peer.Address, toBeRemoved);
+                    GrpcChannel channel = GrpcChannel.ForAddress(peer.Address);
+                    var gameService = new GameService.GameServiceClient(channel);
+                    try
+                    {
+                        var response = gameService.EndGame(new EndGameRequest { ToRemove = toBeRemoved });
+                        if (response.Status == true)
+                            Console.WriteLine("--- Done: {0} has just removed {1}", peer.Address, toBeRemoved);
+                        else
+                        {
+                            Console.WriteLine("--- Remove peer ack received with error from {0}:", peer.Address);
+                            Console.WriteLine($"--- {response.Message}");
+                        }
+                    }
+                    catch (RpcException)
+                    {
+                        Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
+                        HandlePeerCrash(peer.Address);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(".. Failed to send remove peer request for {0} to {1}", toBeRemoved, peer.Address);
                         // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
                     }
                 }

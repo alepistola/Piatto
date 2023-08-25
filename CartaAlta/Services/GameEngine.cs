@@ -259,9 +259,11 @@ namespace CartaAlta.Services
             }
             catch (GameException ex)
             {
-                Console.WriteLine(ex.Message);
+                
                 if (ex.IsTheOnlyPlayer)
                     throw;
+
+                Console.WriteLine(ex.Message);
             }
         }
 
