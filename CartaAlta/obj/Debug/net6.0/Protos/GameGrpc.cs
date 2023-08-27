@@ -55,6 +55,8 @@ namespace CartaAlta.Grpc {
     static readonly grpc::Marshaller<global::CartaAlta.Grpc.InitialBetRequest> __Marshaller_game_InitialBetRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CartaAlta.Grpc.InitialBetRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::CartaAlta.Grpc.EndGameRequest> __Marshaller_game_EndGameRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CartaAlta.Grpc.EndGameRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::CartaAlta.Grpc.CrashInfo> __Marshaller_game_CrashInfo = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CartaAlta.Grpc.CrashInfo.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::CartaAlta.Grpc.PassTurnRequest, global::CartaAlta.Grpc.GameServiceResponse> __Method_PassTurn = new grpc::Method<global::CartaAlta.Grpc.PassTurnRequest, global::CartaAlta.Grpc.GameServiceResponse>(
@@ -88,6 +90,14 @@ namespace CartaAlta.Grpc {
         __Marshaller_game_EndGameRequest,
         __Marshaller_game_GameServiceResponse);
 
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::CartaAlta.Grpc.CrashInfo, global::CartaAlta.Grpc.GameServiceResponse> __Method_SignalCrash = new grpc::Method<global::CartaAlta.Grpc.CrashInfo, global::CartaAlta.Grpc.GameServiceResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SignalCrash",
+        __Marshaller_game_CrashInfo,
+        __Marshaller_game_GameServiceResponse);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -118,6 +128,12 @@ namespace CartaAlta.Grpc {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::CartaAlta.Grpc.GameServiceResponse> EndGame(global::CartaAlta.Grpc.EndGameRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::CartaAlta.Grpc.GameServiceResponse> SignalCrash(global::CartaAlta.Grpc.CrashInfo request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -231,6 +247,26 @@ namespace CartaAlta.Grpc {
       {
         return CallInvoker.AsyncUnaryCall(__Method_EndGame, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::CartaAlta.Grpc.GameServiceResponse SignalCrash(global::CartaAlta.Grpc.CrashInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SignalCrash(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::CartaAlta.Grpc.GameServiceResponse SignalCrash(global::CartaAlta.Grpc.CrashInfo request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SignalCrash, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::CartaAlta.Grpc.GameServiceResponse> SignalCrashAsync(global::CartaAlta.Grpc.CrashInfo request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SignalCrashAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::CartaAlta.Grpc.GameServiceResponse> SignalCrashAsync(global::CartaAlta.Grpc.CrashInfo request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SignalCrash, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override GameServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -248,7 +284,8 @@ namespace CartaAlta.Grpc {
           .AddMethod(__Method_PassTurn, serviceImpl.PassTurn)
           .AddMethod(__Method_SyncDeck, serviceImpl.SyncDeck)
           .AddMethod(__Method_AskInitialBet, serviceImpl.AskInitialBet)
-          .AddMethod(__Method_EndGame, serviceImpl.EndGame).Build();
+          .AddMethod(__Method_EndGame, serviceImpl.EndGame)
+          .AddMethod(__Method_SignalCrash, serviceImpl.SignalCrash).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -262,6 +299,7 @@ namespace CartaAlta.Grpc {
       serviceBinder.AddMethod(__Method_SyncDeck, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.DeckState, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.SyncDeck));
       serviceBinder.AddMethod(__Method_AskInitialBet, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.InitialBetRequest, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.AskInitialBet));
       serviceBinder.AddMethod(__Method_EndGame, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.EndGameRequest, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.EndGame));
+      serviceBinder.AddMethod(__Method_SignalCrash, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.CrashInfo, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.SignalCrash));
     }
 
   }

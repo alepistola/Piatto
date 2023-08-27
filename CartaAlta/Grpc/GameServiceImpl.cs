@@ -129,5 +129,43 @@ namespace CartaAlta.Grpc
                 });
             }
         }
+
+        public override Task<GameServiceResponse> SignalCrash(CrashInfo request, ServerCallContext context)
+        {
+            try
+            {
+                Console.WriteLine("-- Received signal of crash for player {0} ", request.NodeAddress);
+
+                if (ServicePool.DbService.PeerDb.RemoveByAddress(request.NodeAddress) == 1)
+                {
+                    ServicePool.P2PService.UpdateAdjacentPeer();
+                    ServicePool.GameEngine.RemovePlayerByName(request.PlayerName);
+                    Console.WriteLine($"-- Removed peer {request.NodeAddress} ({request.PlayerName}), new adjacent peer {ServicePool.P2PService.GetAdjacentNodeAddress()}");
+
+                    return Task.FromResult(new GameServiceResponse
+                    {
+                        Status = true,
+                        Message = String.Format("Correctly removed peer!")
+                    });
+                }
+                else
+                {
+                    return Task.FromResult(new GameServiceResponse
+                    {
+                        Status = false,
+                        Message = String.Format($"Peer {request.NodeAddress} not found!")
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Task.FromResult(new GameServiceResponse
+                {
+                    Status = false,
+                    Message = String.Format($"Error occured while trying to remove {request.NodeAddress}")
+                });
+            }
+        }
     }
 }

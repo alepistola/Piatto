@@ -40,6 +40,8 @@ namespace CartaAlta.Services
         public void Stop()
         {
             Console.WriteLine("... DB Service is stopping...");
+            PeerDb.RemoveAll();
+            MoveDb.RemoveAll();
             DB_PEER.Dispose();
             DB_MOVE.Dispose();
             Console.WriteLine("... DB Service has been disposed");

@@ -73,7 +73,7 @@ namespace CartaAlta.P2P
                     catch(RpcException)
                     {
                         Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
-                        HandlePeerCrash(peer.Address);
+                        HandlePeerCrash(peer);
                     }
                     catch (Exception ex)
                     {
@@ -85,17 +85,14 @@ namespace CartaAlta.P2P
             }
         }
 
-        private void HandlePeerCrash(string address)
+        private void HandlePeerCrash(Peer peer)
         {
-            if (ServicePool.DbService.PeerDb.RemoveByAddress(address) == 1)
+            if (ServicePool.DbService.PeerDb.RemoveByAddress(peer.Address) == 1)
             {
                 ServicePool.P2PService.UpdateAdjacentPeer();
-                Console.WriteLine($"--- Removed peer {address}, new adjacent peer {ServicePool.P2PService.GetAdjacentNodeAddress()}");
-                NotifyEndGameByAddress(address);
-            }
-            else
-            {
-                throw new GameException($"Peer {address} not found!");
+                ServicePool.GameEngine.RemovePlayerByName(peer.Name);
+                Console.WriteLine($"--- Removed peer {peer.Address} ({peer.Name}), new adjacent peer {ServicePool.P2PService.GetAdjacentNodeAddress()}");
+                SignalPeerCrash(peer);
             }
         }
 
@@ -127,7 +124,7 @@ namespace CartaAlta.P2P
                     catch (RpcException)
                     {
                         Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
-                        HandlePeerCrash(peer.Address);
+                        HandlePeerCrash(peer);
                     }
                     catch (Exception ex)
                     {
@@ -157,7 +154,7 @@ namespace CartaAlta.P2P
             catch (RpcException)
             {
                 Console.WriteLine($"--- Fail: impossible to reach {_adjacentNode.Address}, it may have crashed");
-                HandlePeerCrash(_adjacentNode.Address);
+                HandlePeerCrash(_adjacentNode);
             }
             catch (Exception ex)
             {
@@ -189,7 +186,7 @@ namespace CartaAlta.P2P
                     catch (RpcException)
                     {
                         Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
-                        HandlePeerCrash(peer.Address);
+                        HandlePeerCrash(peer);
                     }
                     catch (Exception ex)
                     {
@@ -234,7 +231,7 @@ namespace CartaAlta.P2P
             }
         }
 
-        private void NotifyEndGameByAddress(string toBeRemoved)
+        private void SignalPeerCrash(Peer crashed)
         {
             var knownPeers = ServicePool.DbService.PeerDb.GetAllToList();
 
@@ -242,14 +239,14 @@ namespace CartaAlta.P2P
             {
                 if (!_nodeAddress.Equals(peer.Address))
                 {
-                    Console.WriteLine("-- Sending remove peer request to {0} for {1}", peer.Address, toBeRemoved);
+                    Console.WriteLine("-- Signaling peer crash ({1}) to {0}", peer.Address, crashed.Address);
                     GrpcChannel channel = GrpcChannel.ForAddress(peer.Address);
                     var gameService = new GameService.GameServiceClient(channel);
                     try
                     {
-                        var response = gameService.EndGame(new EndGameRequest { ToRemove = toBeRemoved });
+                        var response = gameService.SignalCrash(new CrashInfo { NodeAddress = crashed.Address, PlayerName = crashed.Name });
                         if (response.Status == true)
-                            Console.WriteLine("--- Done: {0} has just removed {1}", peer.Address, toBeRemoved);
+                            Console.WriteLine("--- Done: {0} has just removed {1}", peer.Address, crashed.Address);
                         else
                         {
                             Console.WriteLine("--- Remove peer ack received with error from {0}:", peer.Address);
@@ -258,13 +255,13 @@ namespace CartaAlta.P2P
                     }
                     catch (RpcException)
                     {
-                        Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed");
-                        HandlePeerCrash(peer.Address);
+                        Console.WriteLine($"--- Fail: impossible to reach {peer.Address}, it may have crashed too");
+                        HandlePeerCrash(peer);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
-                        Console.WriteLine(".. Failed to send remove peer request for {0} to {1}", toBeRemoved, peer.Address);
+                        Console.WriteLine(".. Failed to signal peer ({0}) to {1}", crashed.Address, peer.Address);
                         // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
                     }
                 }

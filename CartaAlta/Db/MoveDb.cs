@@ -155,5 +155,10 @@ namespace CartaAlta.Db
         {
             return _db.GetCollection<Move>(Constants.TBL_MOVE);
         }
+
+        public void RemoveAll()
+        {
+            _db.GetCollection<Peer>(Utils.Constants.TBL_MOVE).DeleteAll();
+        }
     }
 }

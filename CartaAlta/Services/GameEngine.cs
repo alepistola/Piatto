@@ -11,6 +11,7 @@ namespace CartaAlta.Services
         private Dictionary<string, Player> _players;
         private Deck _deck;
         private double _piatto;
+        private bool _gameFinished;
         private readonly string _myName;
 
 
@@ -22,6 +23,7 @@ namespace CartaAlta.Services
             _piatto = 0;
             _myName = DotNetEnv.Env.GetString("NODE_NAME");
             TurnNr = 0;
+            _gameFinished = false;
         }
 
         public void SetSynDeck(List<Card> cards) => _deck = new Deck(cards);
@@ -54,15 +56,21 @@ namespace CartaAlta.Services
 
             TurnNr++;
 
+            if (!_gameFinished)
+                PassTurn(false);
+        }
+
+
+        public bool RemovePlayerByName(string name)
+        {
             try
             {
-                PassTurn(false);
+                return _players.Remove(name);
             }
-            catch (GameException)
+            catch (Exception)
             {
-                return;
+                return false;
             }
-            
         }
 
         private void PrintGameState()
@@ -108,6 +116,8 @@ namespace CartaAlta.Services
             };
             BroadcastMove(move);
             CheckIfILost();
+
+            CheckForMinPlayers();
         }
 
         private void CheckIfILost()
@@ -123,6 +133,8 @@ namespace CartaAlta.Services
         public void MakeTurnAndPass()
         {
             MakeTurn();
+            if (_gameFinished)
+                return;
             PassTurn(false);
         }
 
@@ -248,6 +260,7 @@ namespace CartaAlta.Services
         {
             TurnNr = 0;
             IsDealer = false;
+            if (_gameFinished) return;
             PassTurn(true);
         }
 
@@ -279,6 +292,7 @@ namespace CartaAlta.Services
             if(_players.Count < 2 || playingPlayersNr < 2)
             {
                 PrintEndGame(true);
+                _gameFinished = true;
                 return false;
             }
             return true;
