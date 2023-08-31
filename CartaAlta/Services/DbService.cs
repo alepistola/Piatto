@@ -6,7 +6,6 @@ namespace CartaAlta.Services
     public class DbService
     {
         private readonly LiteDatabase DB_MOVE;
-        // private readonly LiteDatabase DB_MOVE_HISTORY;
         private readonly LiteDatabase DB_PEER;
 
         public MoveDb MoveDb { get; set; }
@@ -17,8 +16,14 @@ namespace CartaAlta.Services
         public DbService()
         {
             //create db folder
-            if (!System.IO.Directory.Exists(@"DbFiles"))
-                System.IO.Directory.CreateDirectory(@"DbFiles");
+            if (!Directory.Exists(@"DbFiles"))
+                Directory.CreateDirectory(@"DbFiles");
+            else
+            {
+                File.Delete(@"DbFiles//move.db");
+                File.Delete(@"DbFiles//peer.db");
+            }
+                
 
             DB_MOVE = InitializeDatabase(@"DbFiles//move.db");
             DB_PEER = InitializeDatabase(@"DbFiles//peer.db");
