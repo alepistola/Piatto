@@ -10,6 +10,7 @@ service GameService {
   rpc AskInitialBet(InitialBetRequest) returns (GameServiceResponse);
   rpc EndGame(EndGameRequest) returns (GameServiceResponse);
   rpc SignalCrash(CrashInfo) returns (GameServiceResponse);
+  rpc SignalPossibleCrash(CrashInfo) returns (GameServiceResponse);
 }
 
 message PassTurnRequest {
