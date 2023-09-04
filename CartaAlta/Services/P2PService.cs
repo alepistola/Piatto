@@ -147,7 +147,12 @@ namespace CartaAlta.P2P
                 var gameService = new GameService.GameServiceClient(channel);
                 var response = gameService.PassTurn(new PassTurnRequest{ Dealer = nextDealer });
                 if (response.Status == true)
+                {
                     Console.WriteLine("--- Done: correctly passed!");
+                    var move = CreatePassTurnMove(_nodeAddress, _adjacentNode.Address, ServicePool.GameEngine.DealerName);
+                    ServicePool.CrashDetectionService.UpdateState(move);
+                    BroadcastMove(move);
+                }
                 else
                     Console.WriteLine("--- Pass turn request sent but ack not received from {0} (Err: {1})", _adjacentNode.Address, response.Message);
             }
@@ -162,6 +167,22 @@ namespace CartaAlta.P2P
                 Console.WriteLine(".. Failed to send pass turn request ");
                 throw;
             }
+        }
+
+        private Move CreatePassTurnMove(string fromAddress, string toAddress, string dealerName)
+        {
+            var moveNr = ServicePool.DbService.MoveDb.CalculateNextMoveNr();
+
+            return new Move
+            {
+                Author = _nodeName,
+                CurrentDealer = dealerName,
+                MoveType = MoveType.PassTurn,
+                TimeStamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                From = fromAddress,
+                To = toAddress,
+                Number = moveNr
+            };
         }
 
         public void AskInitialBet(double amount)

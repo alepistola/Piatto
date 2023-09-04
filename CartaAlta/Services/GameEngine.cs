@@ -7,6 +7,7 @@ namespace CartaAlta.Services
     public class GameEngine
     {
         public bool IsDealer { get; set; }
+        public string DealerName { get; set; }
         private int TurnNr { get; set; }
         private Dictionary<string, Player> _players;
         private Deck _deck;

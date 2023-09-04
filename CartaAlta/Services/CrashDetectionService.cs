@@ -1,4 +1,5 @@
-﻿using CartaAlta.Utils;
+﻿using CartaAlta.Grpc;
+using CartaAlta.Utils;
 
 namespace CartaAlta.Services
 {
@@ -64,7 +65,10 @@ namespace CartaAlta.Services
             throw new NotImplementedException();
         }
 
-        
+        public bool UpdateState(Move mv)
+        {
+            throw new NotImplementedException();
+        }
 
         
     }

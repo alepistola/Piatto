@@ -32,7 +32,6 @@ namespace CartaAlta.Db
             try
             {
                 var collection = GetAll();
-
                 collection.InsertBulk(peers);
 
                 return true;
@@ -78,18 +77,26 @@ namespace CartaAlta.Db
         public Peer GetByAddress(string address)
         {
             var peers = GetAll();
-            if (peers is null)
-            {
-                return null;
-            }
+            if (peers is null) return null;
 
-            return peers.FindOne(x => x.Address == address);
+            return peers.FindOne(peer => peer.Address == address);
         }
 
         public int RemoveByAddress(string address)
         {
             var deletedCount = _db.GetCollection<Peer>(Utils.Constants.TBL_PEERS).DeleteMany(p => p.Address == address);
             return deletedCount;
+        }
+
+        /// <summary>
+        /// Get peer by player name
+        /// </summary>
+        public Peer GetByName(string name)
+        {
+            var peers = GetAll();
+            if (peers is null) return null;
+
+            return peers.FindOne(peer => peer.Name == name);
         }
 
         public void RemoveAll()
