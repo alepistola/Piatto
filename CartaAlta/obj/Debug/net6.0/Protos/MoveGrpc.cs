@@ -49,10 +49,6 @@ namespace CartaAlta.Grpc {
     static readonly grpc::Marshaller<global::CartaAlta.Grpc.MovePost> __Marshaller_move_MovePost = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CartaAlta.Grpc.MovePost.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::CartaAlta.Grpc.MoveStatus> __Marshaller_move_MoveStatus = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CartaAlta.Grpc.MoveStatus.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::CartaAlta.Grpc.RequestNumber> __Marshaller_move_RequestNumber = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CartaAlta.Grpc.RequestNumber.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::CartaAlta.Grpc.Move> __Marshaller_move_Move = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CartaAlta.Grpc.Move.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::CartaAlta.Grpc.MovePost, global::CartaAlta.Grpc.MoveStatus> __Method_BroadcastMove = new grpc::Method<global::CartaAlta.Grpc.MovePost, global::CartaAlta.Grpc.MoveStatus>(
@@ -61,14 +57,6 @@ namespace CartaAlta.Grpc {
         "BroadcastMove",
         __Marshaller_move_MovePost,
         __Marshaller_move_MoveStatus);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::CartaAlta.Grpc.RequestNumber, global::CartaAlta.Grpc.Move> __Method_GetByNumber = new grpc::Method<global::CartaAlta.Grpc.RequestNumber, global::CartaAlta.Grpc.Move>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "GetByNumber",
-        __Marshaller_move_RequestNumber,
-        __Marshaller_move_Move);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -82,12 +70,6 @@ namespace CartaAlta.Grpc {
     {
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::CartaAlta.Grpc.MoveStatus> BroadcastMove(global::CartaAlta.Grpc.MovePost request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::CartaAlta.Grpc.Move> GetByNumber(global::CartaAlta.Grpc.RequestNumber request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -141,26 +123,6 @@ namespace CartaAlta.Grpc {
       {
         return CallInvoker.AsyncUnaryCall(__Method_BroadcastMove, null, options, request);
       }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::CartaAlta.Grpc.Move GetByNumber(global::CartaAlta.Grpc.RequestNumber request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetByNumber(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::CartaAlta.Grpc.Move GetByNumber(global::CartaAlta.Grpc.RequestNumber request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_GetByNumber, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::CartaAlta.Grpc.Move> GetByNumberAsync(global::CartaAlta.Grpc.RequestNumber request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return GetByNumberAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::CartaAlta.Grpc.Move> GetByNumberAsync(global::CartaAlta.Grpc.RequestNumber request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_GetByNumber, null, options, request);
-      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override MoveServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -175,8 +137,7 @@ namespace CartaAlta.Grpc {
     public static grpc::ServerServiceDefinition BindService(MoveServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_BroadcastMove, serviceImpl.BroadcastMove)
-          .AddMethod(__Method_GetByNumber, serviceImpl.GetByNumber).Build();
+          .AddMethod(__Method_BroadcastMove, serviceImpl.BroadcastMove).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -187,7 +148,6 @@ namespace CartaAlta.Grpc {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, MoveServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_BroadcastMove, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.MovePost, global::CartaAlta.Grpc.MoveStatus>(serviceImpl.BroadcastMove));
-      serviceBinder.AddMethod(__Method_GetByNumber, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.RequestNumber, global::CartaAlta.Grpc.Move>(serviceImpl.GetByNumber));
     }
 
   }

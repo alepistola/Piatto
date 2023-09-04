@@ -8,7 +8,6 @@ package move;
 
 service MoveService {
   rpc BroadcastMove(MovePost) returns (MoveStatus);
-  rpc GetByNumber(RequestNumber) returns (Move);
 }
 
 message MovePost{
@@ -19,14 +18,6 @@ message MovePost{
 message MoveStatus{
   bool status = 1;
   string message = 2;
-}
-
-message MoveList {
-  repeated Move moves = 1;
-}
-
-message RequestNumber {
-	int32 number = 1;
 }
 
 message Move{
