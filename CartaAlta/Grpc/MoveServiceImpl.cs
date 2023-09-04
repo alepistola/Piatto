@@ -5,13 +5,6 @@ namespace CartaAlta.Grpc
 {
     public class MoveServiceImpl : MoveService.MoveServiceBase
     {
-        public override Task<Move> GetByNumber(RequestNumber requestNumber, ServerCallContext context)
-        {
-            var move = ServicePool.DbService.MoveDb.GetByNumber(requestNumber.Number);
-            return Task.FromResult(move);
-        }
-
-
         public override Task<MoveStatus> BroadcastMove(MovePost req, ServerCallContext context)
         {
             Console.WriteLine("-- Received {0}, From: {1}", Utils.Extensions.MoveToString(req.Move), req.SendingFrom);

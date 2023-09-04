@@ -24,19 +24,19 @@ namespace CartaAlta.Grpc {
     static LobbyReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJQcm90b3MvbG9iYnkucHJvdG8SBWxvYmJ5Ij8KBFBlZXISCgoCaWQYASAB",
-            "KAUSEQoEbmFtZRgCIAEoCUgAiAEBEg8KB2FkZHJlc3MYAyABKAlCBwoFX25h",
-            "bWUiOQoNUmVnaXN0ZXJSZXBseRISCgpnYW1lTnVtYmVyGAEgASgFEhQKDHBs",
-            "YXllck51bWJlchgCIAEoBSI/Cg5TdGFydE1hdGNoSW5mbxIdCghwZWVyTGlz",
-            "dBgBIAMoCzILLmxvYmJ5LlBlZXISDgoGZGVhbGVyGAIgASgIIh8KDVN0YXJ0",
-            "TWF0Y2hBY2sSDgoGc3RhdHVzGAEgASgIMn8KC01hdGNobWFraW5nEjUKEFJl",
-            "Z2lzdGVyRm9yTWF0Y2gSCy5sb2JieS5QZWVyGhQubG9iYnkuUmVnaXN0ZXJS",
-            "ZXBseRI5CgpTdGFydE1hdGNoEhUubG9iYnkuU3RhcnRNYXRjaEluZm8aFC5s",
-            "b2JieS5TdGFydE1hdGNoQWNrQhGqAg5DYXJ0YUFsdGEuR3JwY2IGcHJvdG8z"));
+            "ChJQcm90b3MvbG9iYnkucHJvdG8SBWxvYmJ5IiUKBFBlZXISDAoEbmFtZRgB",
+            "IAEoCRIPCgdhZGRyZXNzGAIgASgJIjkKDVJlZ2lzdGVyUmVwbHkSEgoKZ2Ft",
+            "ZU51bWJlchgBIAEoBRIUCgxwbGF5ZXJOdW1iZXIYAiABKAUiPwoOU3RhcnRN",
+            "YXRjaEluZm8SHQoIcGVlckxpc3QYASADKAsyCy5sb2JieS5QZWVyEg4KBmRl",
+            "YWxlchgCIAEoCCIfCg1TdGFydE1hdGNoQWNrEg4KBnN0YXR1cxgBIAEoCDJ/",
+            "CgtNYXRjaG1ha2luZxI1ChBSZWdpc3RlckZvck1hdGNoEgsubG9iYnkuUGVl",
+            "choULmxvYmJ5LlJlZ2lzdGVyUmVwbHkSOQoKU3RhcnRNYXRjaBIVLmxvYmJ5",
+            "LlN0YXJ0TWF0Y2hJbmZvGhQubG9iYnkuU3RhcnRNYXRjaEFja0IRqgIOQ2Fy",
+            "dGFBbHRhLkdycGNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Peer), global::CartaAlta.Grpc.Peer.Parser, new[]{ "Id", "Name", "Address" }, new[]{ "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Peer), global::CartaAlta.Grpc.Peer.Parser, new[]{ "Name", "Address" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.RegisterReply), global::CartaAlta.Grpc.RegisterReply.Parser, new[]{ "GameNumber", "PlayerNumber" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.StartMatchInfo), global::CartaAlta.Grpc.StartMatchInfo.Parser, new[]{ "PeerList", "Dealer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.StartMatchAck), global::CartaAlta.Grpc.StartMatchAck.Parser, new[]{ "Status" }, null, null, null, null)
@@ -80,7 +80,6 @@ namespace CartaAlta.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Peer(Peer other) : this() {
-      id_ = other.id_;
       name_ = other.name_;
       address_ = other.address_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -92,46 +91,20 @@ namespace CartaAlta.Grpc {
       return new Peer(this);
     }
 
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 1;
-    private int id_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Id {
-      get { return id_; }
-      set {
-        id_ = value;
-      }
-    }
-
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 2;
-    private readonly static string NameDefaultValue = "";
-
-    private string name_;
+    public const int NameFieldNumber = 1;
+    private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public string Name {
-      get { return name_ ?? NameDefaultValue; }
+      get { return name_; }
       set {
         name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
-    /// <summary>Gets whether the "name" field is set</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool HasName {
-      get { return name_ != null; }
-    }
-    /// <summary>Clears the value of the "name" field</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearName() {
-      name_ = null;
-    }
 
     /// <summary>Field number for the "address" field.</summary>
-    public const int AddressFieldNumber = 3;
+    public const int AddressFieldNumber = 2;
     private string address_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -157,7 +130,6 @@ namespace CartaAlta.Grpc {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Id != other.Id) return false;
       if (Name != other.Name) return false;
       if (Address != other.Address) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -167,8 +139,7 @@ namespace CartaAlta.Grpc {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Id != 0) hash ^= Id.GetHashCode();
-      if (HasName) hash ^= Name.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (Address.Length != 0) hash ^= Address.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -188,16 +159,12 @@ namespace CartaAlta.Grpc {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Id != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Id);
-      }
-      if (HasName) {
-        output.WriteRawTag(18);
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
         output.WriteString(Name);
       }
       if (Address.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(Address);
       }
       if (_unknownFields != null) {
@@ -210,16 +177,12 @@ namespace CartaAlta.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Id != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Id);
-      }
-      if (HasName) {
-        output.WriteRawTag(18);
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
         output.WriteString(Name);
       }
       if (Address.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(Address);
       }
       if (_unknownFields != null) {
@@ -232,10 +195,7 @@ namespace CartaAlta.Grpc {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Id != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
-      }
-      if (HasName) {
+      if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
       if (Address.Length != 0) {
@@ -253,10 +213,7 @@ namespace CartaAlta.Grpc {
       if (other == null) {
         return;
       }
-      if (other.Id != 0) {
-        Id = other.Id;
-      }
-      if (other.HasName) {
+      if (other.Name.Length != 0) {
         Name = other.Name;
       }
       if (other.Address.Length != 0) {
@@ -277,15 +234,11 @@ namespace CartaAlta.Grpc {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            Id = input.ReadInt32();
-            break;
-          }
-          case 18: {
+          case 10: {
             Name = input.ReadString();
             break;
           }
-          case 26: {
+          case 18: {
             Address = input.ReadString();
             break;
           }
@@ -304,15 +257,11 @@ namespace CartaAlta.Grpc {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            Id = input.ReadInt32();
-            break;
-          }
-          case 18: {
+          case 10: {
             Name = input.ReadString();
             break;
           }
-          case 26: {
+          case 18: {
             Address = input.ReadString();
             break;
           }
