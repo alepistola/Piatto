@@ -21,7 +21,7 @@ namespace CartaAlta.Services
         #region Timer
         public Task Start()
         {
-            _timer = new Timer(callback: CheckAndSignalDealerCrash, null, TimeSpan.Zero,
+            _timer = new Timer(CheckAndSignalDealerCrash, null, TimeSpan.Zero,
                 TimeSpan.FromSeconds(_timeout));
 
             return Task.CompletedTask;
@@ -54,7 +54,7 @@ namespace CartaAlta.Services
 
         #endregion
 
-        private void CheckAndSignalDealerCrash(object state)
+        private void CheckAndSignalDealerCrash(object? state)
         {
 
         }

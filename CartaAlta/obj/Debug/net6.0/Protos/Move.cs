@@ -28,16 +28,19 @@ namespace CartaAlta.Grpc {
             "OgoITW92ZVBvc3QSGAoEbW92ZRgBIAEoCzIKLm1vdmUuTW92ZRIUCgxzZW5k",
             "aW5nX2Zyb20YAiABKAkiLQoKTW92ZVN0YXR1cxIOCgZzdGF0dXMYASABKAgS",
             "DwoHbWVzc2FnZRgCIAEoCSIlCghNb3ZlTGlzdBIZCgVtb3ZlcxgBIAMoCzIK",
-            "Lm1vdmUuTW92ZSIfCg1SZXF1ZXN0TnVtYmVyEg4KBm51bWJlchgBIAEoBSLW",
-            "AQoETW92ZRIOCgZudW1iZXIYASABKAUSEQoJdGltZVN0YW1wGAIgASgDEg4K",
+            "Lm1vdmUuTW92ZSIfCg1SZXF1ZXN0TnVtYmVyEg4KBm51bWJlchgBIAEoBSLH",
+            "AgoETW92ZRIOCgZudW1iZXIYASABKAUSEQoJdGltZVN0YW1wGAIgASgDEg4K",
             "BmF1dGhvchgDIAEoCRIgCghtb3ZlVHlwZRgEIAEoDjIOLm1vdmUuTW92ZVR5",
             "cGUSIgoJZHJhd25DYXJkGAUgASgLMgouZ2FtZS5DYXJkSACIAQESEAoDYmV0",
-            "GAYgASgBSAGIAQESEwoGaGFzV2luGAcgASgISAKIAQESDQoFdG90YWwYCCAB",
-            "KAFCDAoKX2RyYXduQ2FyZEIGCgRfYmV0QgkKB19oYXNXaW4qJwoITW92ZVR5",
-            "cGUSDgoKSW5pdGlhbEJldBAAEgsKB0dhbWVCZXQQATJwCgtNb3ZlU2Vydmlj",
-            "ZRIxCg1Ccm9hZGNhc3RNb3ZlEg4ubW92ZS5Nb3ZlUG9zdBoQLm1vdmUuTW92",
-            "ZVN0YXR1cxIuCgtHZXRCeU51bWJlchITLm1vdmUuUmVxdWVzdE51bWJlchoK",
-            "Lm1vdmUuTW92ZUIRqgIOQ2FydGFBbHRhLkdycGNiBnByb3RvMw=="));
+            "GAYgASgBSAGIAQESEwoGaGFzV2luGAcgASgISAKIAQESEgoFdG90YWwYCCAB",
+            "KAFIA4gBARIRCgRmcm9tGAkgASgJSASIAQESDwoCdG8YCiABKAlIBYgBARIa",
+            "Cg1jdXJyZW50RGVhbGVyGAsgASgJSAaIAQFCDAoKX2RyYXduQ2FyZEIGCgRf",
+            "YmV0QgkKB19oYXNXaW5CCAoGX3RvdGFsQgcKBV9mcm9tQgUKA190b0IQCg5f",
+            "Y3VycmVudERlYWxlcio1CghNb3ZlVHlwZRIOCgpJbml0aWFsQmV0EAASCwoH",
+            "R2FtZUJldBABEgwKCFBhc3NUdXJuEAIycAoLTW92ZVNlcnZpY2USMQoNQnJv",
+            "YWRjYXN0TW92ZRIOLm1vdmUuTW92ZVBvc3QaEC5tb3ZlLk1vdmVTdGF0dXMS",
+            "LgoLR2V0QnlOdW1iZXISEy5tb3ZlLlJlcXVlc3ROdW1iZXIaCi5tb3ZlLk1v",
+            "dmVCEaoCDkNhcnRhQWx0YS5HcnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::CartaAlta.Grpc.GameReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CartaAlta.Grpc.MoveType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -45,7 +48,7 @@ namespace CartaAlta.Grpc {
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.MoveStatus), global::CartaAlta.Grpc.MoveStatus.Parser, new[]{ "Status", "Message" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.MoveList), global::CartaAlta.Grpc.MoveList.Parser, new[]{ "Moves" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.RequestNumber), global::CartaAlta.Grpc.RequestNumber.Parser, new[]{ "Number" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Move), global::CartaAlta.Grpc.Move.Parser, new[]{ "Number", "TimeStamp", "Author", "MoveType", "DrawnCard", "Bet", "HasWin", "Total" }, new[]{ "DrawnCard", "Bet", "HasWin" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Move), global::CartaAlta.Grpc.Move.Parser, new[]{ "Number", "TimeStamp", "Author", "MoveType", "DrawnCard", "Bet", "HasWin", "Total", "From", "To", "CurrentDealer" }, new[]{ "DrawnCard", "Bet", "HasWin", "Total", "From", "To", "CurrentDealer" }, null, null, null)
           }));
     }
     #endregion
@@ -55,6 +58,7 @@ namespace CartaAlta.Grpc {
   public enum MoveType {
     [pbr::OriginalName("InitialBet")] InitialBet = 0,
     [pbr::OriginalName("GameBet")] GameBet = 1,
+    [pbr::OriginalName("PassTurn")] PassTurn = 2,
   }
 
   #endregion
@@ -932,6 +936,9 @@ namespace CartaAlta.Grpc {
       bet_ = other.bet_;
       hasWin_ = other.hasWin_;
       total_ = other.total_;
+      from_ = other.from_;
+      to_ = other.to_;
+      currentDealer_ = other.currentDealer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1057,14 +1064,107 @@ namespace CartaAlta.Grpc {
 
     /// <summary>Field number for the "total" field.</summary>
     public const int TotalFieldNumber = 8;
+    private readonly static double TotalDefaultValue = 0D;
+
     private double total_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public double Total {
-      get { return total_; }
+      get { if ((_hasBits0 & 4) != 0) { return total_; } else { return TotalDefaultValue; } }
       set {
+        _hasBits0 |= 4;
         total_ = value;
       }
+    }
+    /// <summary>Gets whether the "total" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTotal {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "total" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTotal() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "from" field.</summary>
+    public const int FromFieldNumber = 9;
+    private readonly static string FromDefaultValue = "";
+
+    private string from_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string From {
+      get { return from_ ?? FromDefaultValue; }
+      set {
+        from_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "from" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFrom {
+      get { return from_ != null; }
+    }
+    /// <summary>Clears the value of the "from" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFrom() {
+      from_ = null;
+    }
+
+    /// <summary>Field number for the "to" field.</summary>
+    public const int ToFieldNumber = 10;
+    private readonly static string ToDefaultValue = "";
+
+    private string to_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string To {
+      get { return to_ ?? ToDefaultValue; }
+      set {
+        to_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "to" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTo {
+      get { return to_ != null; }
+    }
+    /// <summary>Clears the value of the "to" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTo() {
+      to_ = null;
+    }
+
+    /// <summary>Field number for the "currentDealer" field.</summary>
+    public const int CurrentDealerFieldNumber = 11;
+    private readonly static string CurrentDealerDefaultValue = "";
+
+    private string currentDealer_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string CurrentDealer {
+      get { return currentDealer_ ?? CurrentDealerDefaultValue; }
+      set {
+        currentDealer_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "currentDealer" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasCurrentDealer {
+      get { return currentDealer_ != null; }
+    }
+    /// <summary>Clears the value of the "currentDealer" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearCurrentDealer() {
+      currentDealer_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1090,6 +1190,9 @@ namespace CartaAlta.Grpc {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Bet, other.Bet)) return false;
       if (HasWin != other.HasWin) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Total, other.Total)) return false;
+      if (From != other.From) return false;
+      if (To != other.To) return false;
+      if (CurrentDealer != other.CurrentDealer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1104,7 +1207,10 @@ namespace CartaAlta.Grpc {
       if (drawnCard_ != null) hash ^= DrawnCard.GetHashCode();
       if (HasBet) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Bet);
       if (HasHasWin) hash ^= HasWin.GetHashCode();
-      if (Total != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Total);
+      if (HasTotal) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Total);
+      if (HasFrom) hash ^= From.GetHashCode();
+      if (HasTo) hash ^= To.GetHashCode();
+      if (HasCurrentDealer) hash ^= CurrentDealer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1151,9 +1257,21 @@ namespace CartaAlta.Grpc {
         output.WriteRawTag(56);
         output.WriteBool(HasWin);
       }
-      if (Total != 0D) {
+      if (HasTotal) {
         output.WriteRawTag(65);
         output.WriteDouble(Total);
+      }
+      if (HasFrom) {
+        output.WriteRawTag(74);
+        output.WriteString(From);
+      }
+      if (HasTo) {
+        output.WriteRawTag(82);
+        output.WriteString(To);
+      }
+      if (HasCurrentDealer) {
+        output.WriteRawTag(90);
+        output.WriteString(CurrentDealer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1193,9 +1311,21 @@ namespace CartaAlta.Grpc {
         output.WriteRawTag(56);
         output.WriteBool(HasWin);
       }
-      if (Total != 0D) {
+      if (HasTotal) {
         output.WriteRawTag(65);
         output.WriteDouble(Total);
+      }
+      if (HasFrom) {
+        output.WriteRawTag(74);
+        output.WriteString(From);
+      }
+      if (HasTo) {
+        output.WriteRawTag(82);
+        output.WriteString(To);
+      }
+      if (HasCurrentDealer) {
+        output.WriteRawTag(90);
+        output.WriteString(CurrentDealer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1228,8 +1358,17 @@ namespace CartaAlta.Grpc {
       if (HasHasWin) {
         size += 1 + 1;
       }
-      if (Total != 0D) {
+      if (HasTotal) {
         size += 1 + 8;
+      }
+      if (HasFrom) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(From);
+      }
+      if (HasTo) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(To);
+      }
+      if (HasCurrentDealer) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CurrentDealer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1267,8 +1406,17 @@ namespace CartaAlta.Grpc {
       if (other.HasHasWin) {
         HasWin = other.HasWin;
       }
-      if (other.Total != 0D) {
+      if (other.HasTotal) {
         Total = other.Total;
+      }
+      if (other.HasFrom) {
+        From = other.From;
+      }
+      if (other.HasTo) {
+        To = other.To;
+      }
+      if (other.HasCurrentDealer) {
+        CurrentDealer = other.CurrentDealer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1320,6 +1468,18 @@ namespace CartaAlta.Grpc {
             Total = input.ReadDouble();
             break;
           }
+          case 74: {
+            From = input.ReadString();
+            break;
+          }
+          case 82: {
+            To = input.ReadString();
+            break;
+          }
+          case 90: {
+            CurrentDealer = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1368,6 +1528,18 @@ namespace CartaAlta.Grpc {
           }
           case 65: {
             Total = input.ReadDouble();
+            break;
+          }
+          case 74: {
+            From = input.ReadString();
+            break;
+          }
+          case 82: {
+            To = input.ReadString();
+            break;
+          }
+          case 90: {
+            CurrentDealer = input.ReadString();
             break;
           }
         }

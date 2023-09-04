@@ -37,10 +37,14 @@ message Move{
   optional game.Card drawnCard = 5;
   optional double bet = 6;
   optional bool hasWin = 7;
-  double total = 8; 
+  optional double total = 8; 
+  optional string from = 9;
+  optional string to = 10;
+  optional string currentDealer = 11;
 }
 
 enum MoveType {
 	InitialBet = 0;
 	GameBet = 1;
+	PassTurn = 2;
 }
