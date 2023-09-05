@@ -10,9 +10,8 @@ service Matchmaking {
 }
 
 message Peer {
-	int32 Id = 1;
-	optional string name = 2;
-	string address = 3;
+	string name = 1;
+	string address = 2;
 }
 
 message RegisterReply {

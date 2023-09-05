@@ -9,6 +9,6 @@ namespace Lobby.Game
         bool AddPlayer(Peer peer);
         bool IsFull();
         List<Peer> GetPlayers();
-        int GetDealerId();
+        string GetDealerName();
     }
 }

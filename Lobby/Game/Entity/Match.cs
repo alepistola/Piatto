@@ -22,10 +22,10 @@ namespace Lobby.Game
             return true;
         }
 
-        public int GetDealerId()
+        public string GetDealerName()
         {
             // just 4 debug
-            return 1;
+            return "Ale";
 
             /*
             if (_dealerId == -1) {
