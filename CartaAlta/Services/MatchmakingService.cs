@@ -3,7 +3,7 @@ using Grpc.Net.Client;
 
 namespace CartaAlta.Services
 {
-    public class MatchmakingService : IService
+    public class MatchmakingService
     {
         private readonly string _lobbyAddress;
         private readonly string _nodeAddress;
