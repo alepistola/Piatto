@@ -30,9 +30,9 @@ namespace CartaAlta.Services
             DbService.Stop();
         }
 
-        public static void InitializeWithPeers(List<Peer> peerList, bool isDealer)
+        public static void InitializeWithPeers(List<Peer> peerList, string dealerName)
         {
-            GameEngine = new GameEngine(peerList, isDealer);
+            GameEngine = new GameEngine(peerList, dealerName);
             P2PService = new P2PService();
         }
     }

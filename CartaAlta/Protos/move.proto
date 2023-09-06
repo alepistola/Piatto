@@ -28,7 +28,8 @@ message Move{
   optional game.Card drawnCard = 5;
   optional double bet = 6;
   optional bool hasWin = 7;
-  double total = 8; 
+  double total = 8;
+  string dealerName = 9;
 }
 
 enum MoveType {
