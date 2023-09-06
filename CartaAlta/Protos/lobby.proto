@@ -21,7 +21,7 @@ message RegisterReply {
 
 message StartMatchInfo {
 	repeated Peer peerList = 1;
-	bool dealer = 2;
+	string dealer = 2;
 }
 
 message StartMatchAck {

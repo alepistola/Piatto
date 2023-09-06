@@ -7,7 +7,9 @@ namespace CartaAlta.Services
     public class GameEngine
     {
         public bool IsDealer { get; set; }
+        public string DealerName { get; private set; }
         private int TurnNr { get; set; }
+
         private Dictionary<string, Player> _players;
         private Deck _deck;
         private double _piatto;
@@ -15,16 +17,19 @@ namespace CartaAlta.Services
         private readonly string _myName;
 
 
-        public GameEngine(List<Peer> peerList, bool isDealer)
+        public GameEngine(List<Peer> peerList, string dealerName)
         { 
             _players = PlayersFactory.GeneratePlayers(peerList);
-            IsDealer = isDealer;
+            DealerName = dealerName;
             _deck = new Deck();
             _piatto = 0;
             _myName = DotNetEnv.Env.GetString("NODE_NAME");
             TurnNr = 0;
+            IsDealer = (dealerName == _myName);
             _gameFinished = false;
         }
+
+        
 
         public void SetSynDeck(List<Card> cards) => _deck = new Deck(cards);
 
@@ -80,6 +85,7 @@ namespace CartaAlta.Services
             Console.WriteLine("");
             Console.WriteLine($"-------------- Game stats --------------");
             Console.WriteLine($"- Piatto: {_piatto} euro (last move #{lastMoveNr})");
+            Console.WriteLine($"- Dealer: {DealerName}");
             Console.WriteLine("");
             foreach (var player in _players)
             {
@@ -104,7 +110,8 @@ namespace CartaAlta.Services
 
             var moveNr = ServicePool.DbService.MoveDb.CalculateNextMoveNr();
 
-            var move = new Move { 
+            var move = new Move {
+                DealerName = IsDealer ? _myName : DealerName,
                 Author = _myName,
                 Bet = bet,
                 HasWin = card.Valore > 5,
@@ -152,7 +159,8 @@ namespace CartaAlta.Services
                 Number = moveNr,
                 TimeStamp = DateTimeOffset.Now.ToUnixTimeSeconds(),
                 Total = amount,
-                MoveType = MoveType.InitialBet
+                MoveType = MoveType.InitialBet,
+                DealerName = IsDealer ? _myName : DealerName
             };
             BroadcastMove(move);
         }
@@ -288,8 +296,8 @@ namespace CartaAlta.Services
 
         private bool CheckForMinPlayers()
         {
-            var playingPlayersNr = _players.Where(p => !(p.Value.HaveLost())).Count();
-            if(_players.Count < 2 || playingPlayersNr < 2)
+            var playingPlayersNr = _players.Where(p => !(p.Value.HaveLost()) && p.Value.Name != _myName).Count();
+            if(_players.Count < 2 || playingPlayersNr < 1)
             {
                 PrintEndGame(true);
                 _gameFinished = true;
@@ -308,6 +316,8 @@ namespace CartaAlta.Services
         {
             Console.WriteLine($"Updating game state according to move #{mv.Number} made by {mv.Author}");
             var oldPiatto = _piatto;
+
+            UpdateDealer(mv.DealerName);
 
             switch (mv.MoveType)
             {
@@ -351,6 +361,9 @@ namespace CartaAlta.Services
                 _players[mv.Author].Lose(false);
             }
         }
+
+        private void UpdateDealer(string dealerName) => DealerName = dealerName;
+
 
         private bool DrawAndCheckLegit(Card remoteDrawn)
         {

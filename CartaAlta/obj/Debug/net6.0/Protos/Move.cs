@@ -27,21 +27,21 @@ namespace CartaAlta.Grpc {
             "ChFQcm90b3MvbW92ZS5wcm90bxIEbW92ZRoRUHJvdG9zL2dhbWUucHJvdG8i",
             "OgoITW92ZVBvc3QSGAoEbW92ZRgBIAEoCzIKLm1vdmUuTW92ZRIUCgxzZW5k",
             "aW5nX2Zyb20YAiABKAkiLQoKTW92ZVN0YXR1cxIOCgZzdGF0dXMYASABKAgS",
-            "DwoHbWVzc2FnZRgCIAEoCSLWAQoETW92ZRIOCgZudW1iZXIYASABKAUSEQoJ",
+            "DwoHbWVzc2FnZRgCIAEoCSLqAQoETW92ZRIOCgZudW1iZXIYASABKAUSEQoJ",
             "dGltZVN0YW1wGAIgASgDEg4KBmF1dGhvchgDIAEoCRIgCghtb3ZlVHlwZRgE",
             "IAEoDjIOLm1vdmUuTW92ZVR5cGUSIgoJZHJhd25DYXJkGAUgASgLMgouZ2Ft",
             "ZS5DYXJkSACIAQESEAoDYmV0GAYgASgBSAGIAQESEwoGaGFzV2luGAcgASgI",
-            "SAKIAQESDQoFdG90YWwYCCABKAFCDAoKX2RyYXduQ2FyZEIGCgRfYmV0QgkK",
-            "B19oYXNXaW4qJwoITW92ZVR5cGUSDgoKSW5pdGlhbEJldBAAEgsKB0dhbWVC",
-            "ZXQQATJACgtNb3ZlU2VydmljZRIxCg1Ccm9hZGNhc3RNb3ZlEg4ubW92ZS5N",
-            "b3ZlUG9zdBoQLm1vdmUuTW92ZVN0YXR1c0IRqgIOQ2FydGFBbHRhLkdycGNi",
-            "BnByb3RvMw=="));
+            "SAKIAQESDQoFdG90YWwYCCABKAESEgoKZGVhbGVyTmFtZRgJIAEoCUIMCgpf",
+            "ZHJhd25DYXJkQgYKBF9iZXRCCQoHX2hhc1dpbionCghNb3ZlVHlwZRIOCgpJ",
+            "bml0aWFsQmV0EAASCwoHR2FtZUJldBABMkAKC01vdmVTZXJ2aWNlEjEKDUJy",
+            "b2FkY2FzdE1vdmUSDi5tb3ZlLk1vdmVQb3N0GhAubW92ZS5Nb3ZlU3RhdHVz",
+            "QhGqAg5DYXJ0YUFsdGEuR3JwY2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::CartaAlta.Grpc.GameReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CartaAlta.Grpc.MoveType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.MovePost), global::CartaAlta.Grpc.MovePost.Parser, new[]{ "Move", "SendingFrom" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.MoveStatus), global::CartaAlta.Grpc.MoveStatus.Parser, new[]{ "Status", "Message" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Move), global::CartaAlta.Grpc.Move.Parser, new[]{ "Number", "TimeStamp", "Author", "MoveType", "DrawnCard", "Bet", "HasWin", "Total" }, new[]{ "DrawnCard", "Bet", "HasWin" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Move), global::CartaAlta.Grpc.Move.Parser, new[]{ "Number", "TimeStamp", "Author", "MoveType", "DrawnCard", "Bet", "HasWin", "Total", "DealerName" }, new[]{ "DrawnCard", "Bet", "HasWin" }, null, null, null)
           }));
     }
     #endregion
@@ -561,6 +561,7 @@ namespace CartaAlta.Grpc {
       bet_ = other.bet_;
       hasWin_ = other.hasWin_;
       total_ = other.total_;
+      dealerName_ = other.dealerName_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -696,6 +697,18 @@ namespace CartaAlta.Grpc {
       }
     }
 
+    /// <summary>Field number for the "dealerName" field.</summary>
+    public const int DealerNameFieldNumber = 9;
+    private string dealerName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string DealerName {
+      get { return dealerName_; }
+      set {
+        dealerName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -719,6 +732,7 @@ namespace CartaAlta.Grpc {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Bet, other.Bet)) return false;
       if (HasWin != other.HasWin) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Total, other.Total)) return false;
+      if (DealerName != other.DealerName) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -734,6 +748,7 @@ namespace CartaAlta.Grpc {
       if (HasBet) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Bet);
       if (HasHasWin) hash ^= HasWin.GetHashCode();
       if (Total != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Total);
+      if (DealerName.Length != 0) hash ^= DealerName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -784,6 +799,10 @@ namespace CartaAlta.Grpc {
         output.WriteRawTag(65);
         output.WriteDouble(Total);
       }
+      if (DealerName.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(DealerName);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -826,6 +845,10 @@ namespace CartaAlta.Grpc {
         output.WriteRawTag(65);
         output.WriteDouble(Total);
       }
+      if (DealerName.Length != 0) {
+        output.WriteRawTag(74);
+        output.WriteString(DealerName);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -859,6 +882,9 @@ namespace CartaAlta.Grpc {
       }
       if (Total != 0D) {
         size += 1 + 8;
+      }
+      if (DealerName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DealerName);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -898,6 +924,9 @@ namespace CartaAlta.Grpc {
       }
       if (other.Total != 0D) {
         Total = other.Total;
+      }
+      if (other.DealerName.Length != 0) {
+        DealerName = other.DealerName;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -949,6 +978,10 @@ namespace CartaAlta.Grpc {
             Total = input.ReadDouble();
             break;
           }
+          case 74: {
+            DealerName = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -997,6 +1030,10 @@ namespace CartaAlta.Grpc {
           }
           case 65: {
             Total = input.ReadDouble();
+            break;
+          }
+          case 74: {
+            DealerName = input.ReadString();
             break;
           }
         }

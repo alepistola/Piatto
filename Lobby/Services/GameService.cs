@@ -53,10 +53,10 @@ namespace Lobby.Services
             {
                 Console.WriteLine("Checking game nr. {0} ({1})", match.GetGameNr(), ExtensionMethods.Extensions.StringJoin(match.GetPlayers().Select(p => p.Address).ToArray(), ", "));
                 if (match.IsFull()) {
-                Thread.Sleep(5000);
+                    Thread.Sleep(5000);
                     NotifyPartecipants(match);
-                RemoveMatch(match);
-            }
+                    RemoveMatch(match);
+                }
             });
         }
 
@@ -76,7 +76,7 @@ namespace Lobby.Services
                 {
                     var startMatchInfo = new StartMatchInfo();
                     startMatchInfo.PeerList.AddRange(match.GetPlayers());
-                    startMatchInfo.Dealer = (match.GetDealerName() == player.Name);
+                    startMatchInfo.Dealer = (match.GetDealerName());
 
                     var response = matchmakingService.StartMatch(startMatchInfo);
                     if (response.Status == true)

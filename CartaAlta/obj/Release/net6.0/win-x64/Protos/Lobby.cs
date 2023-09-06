@@ -28,7 +28,7 @@ namespace CartaAlta.Grpc {
             "IAEoCRIPCgdhZGRyZXNzGAIgASgJIjkKDVJlZ2lzdGVyUmVwbHkSEgoKZ2Ft",
             "ZU51bWJlchgBIAEoBRIUCgxwbGF5ZXJOdW1iZXIYAiABKAUiPwoOU3RhcnRN",
             "YXRjaEluZm8SHQoIcGVlckxpc3QYASADKAsyCy5sb2JieS5QZWVyEg4KBmRl",
-            "YWxlchgCIAEoCCIfCg1TdGFydE1hdGNoQWNrEg4KBnN0YXR1cxgBIAEoCDJ/",
+            "YWxlchgCIAEoCSIfCg1TdGFydE1hdGNoQWNrEg4KBnN0YXR1cxgBIAEoCDJ/",
             "CgtNYXRjaG1ha2luZxI1ChBSZWdpc3RlckZvck1hdGNoEgsubG9iYnkuUGVl",
             "choULmxvYmJ5LlJlZ2lzdGVyUmVwbHkSOQoKU3RhcnRNYXRjaBIVLmxvYmJ5",
             "LlN0YXJ0TWF0Y2hJbmZvGhQubG9iYnkuU3RhcnRNYXRjaEFja0IRqgIOQ2Fy",
@@ -556,13 +556,13 @@ namespace CartaAlta.Grpc {
 
     /// <summary>Field number for the "dealer" field.</summary>
     public const int DealerFieldNumber = 2;
-    private bool dealer_;
+    private string dealer_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Dealer {
+    public string Dealer {
       get { return dealer_; }
       set {
-        dealer_ = value;
+        dealer_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -591,7 +591,7 @@ namespace CartaAlta.Grpc {
     public override int GetHashCode() {
       int hash = 1;
       hash ^= peerList_.GetHashCode();
-      if (Dealer != false) hash ^= Dealer.GetHashCode();
+      if (Dealer.Length != 0) hash ^= Dealer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -611,9 +611,9 @@ namespace CartaAlta.Grpc {
       output.WriteRawMessage(this);
     #else
       peerList_.WriteTo(output, _repeated_peerList_codec);
-      if (Dealer != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Dealer);
+      if (Dealer.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Dealer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -626,9 +626,9 @@ namespace CartaAlta.Grpc {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       peerList_.WriteTo(ref output, _repeated_peerList_codec);
-      if (Dealer != false) {
-        output.WriteRawTag(16);
-        output.WriteBool(Dealer);
+      if (Dealer.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Dealer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -641,8 +641,8 @@ namespace CartaAlta.Grpc {
     public int CalculateSize() {
       int size = 0;
       size += peerList_.CalculateSize(_repeated_peerList_codec);
-      if (Dealer != false) {
-        size += 1 + 1;
+      if (Dealer.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Dealer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -657,7 +657,7 @@ namespace CartaAlta.Grpc {
         return;
       }
       peerList_.Add(other.peerList_);
-      if (other.Dealer != false) {
+      if (other.Dealer.Length != 0) {
         Dealer = other.Dealer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -679,8 +679,8 @@ namespace CartaAlta.Grpc {
             peerList_.AddEntriesFrom(input, _repeated_peerList_codec);
             break;
           }
-          case 16: {
-            Dealer = input.ReadBool();
+          case 18: {
+            Dealer = input.ReadString();
             break;
           }
         }
@@ -702,8 +702,8 @@ namespace CartaAlta.Grpc {
             peerList_.AddEntriesFrom(ref input, _repeated_peerList_codec);
             break;
           }
-          case 16: {
-            Dealer = input.ReadBool();
+          case 18: {
+            Dealer = input.ReadString();
             break;
           }
         }
