@@ -317,6 +317,8 @@ namespace CartaAlta.Services
             Console.WriteLine($"Updating game state according to move #{mv.Number} made by {mv.Author}");
             var oldPiatto = _piatto;
 
+            UpdateDealer(mv.DealerName);
+
             switch (mv.MoveType)
             {
                 case MoveType.InitialBet:
@@ -346,8 +348,6 @@ namespace CartaAlta.Services
             bool legit = DrawAndCheckLegit(mv.DrawnCard);
             if (!legit)
                 throw new GameException($"Card drawn by {mv.Author} not consistent with the one locally unveiled!");
-
-            UpdateDealer(mv.DealerName);
 
             if (mv.HasWin)
             {
