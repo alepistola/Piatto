@@ -15,8 +15,7 @@ namespace CartaAlta
             
             ServicePool.Add(
                 dbService: new DbService(),
-                matchmakingService: new MatchmakingService(),
-                crashDetectionService: new CrashDetectionService()
+                matchmakingService: new MatchmakingService()
             );
             ServicePool.Start();
 

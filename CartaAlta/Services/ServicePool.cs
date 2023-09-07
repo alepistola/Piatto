@@ -13,18 +13,16 @@ namespace CartaAlta.Services
         public static CrashDetectionService CrashDetectionService { get; set; }
 
 
-        public static void Add(MatchmakingService matchmakingService, DbService dbService, CrashDetectionService crashDetectionService)
+        public static void Add(MatchmakingService matchmakingService, DbService dbService)
         {
             MatchmakingService = matchmakingService;
             DbService = dbService;
-            CrashDetectionService = crashDetectionService;
         }
 
         public static void Start()
         {
             MatchmakingService.Start();
             DbService.Start();
-            CrashDetectionService.Start();
         }
 
         public static void Stop()
@@ -48,6 +46,7 @@ namespace CartaAlta.Services
         {
             GameEngine = new GameEngine(peerList, dealerName);
             P2PService = new P2PService();
+            CrashDetectionService = new CrashDetectionService();
         }
     }
 }

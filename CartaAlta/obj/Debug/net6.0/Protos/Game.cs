@@ -27,27 +27,32 @@ namespace CartaAlta.Grpc {
             "ChFQcm90b3MvZ2FtZS5wcm90bxIEZ2FtZSIhCg9QYXNzVHVyblJlcXVlc3QS",
             "DgoGZGVhbGVyGAEgASgIIiIKDkVuZEdhbWVSZXF1ZXN0EhAKCHRvUmVtb3Zl",
             "GAEgASgJIjQKCUNyYXNoSW5mbxITCgtub2RlQWRkcmVzcxgBIAEoCRISCgpw",
-            "bGF5ZXJOYW1lGAIgASgJIkcKE0dhbWVTZXJ2aWNlUmVzcG9uc2USDgoGc3Rh",
-            "dHVzGAEgASgIEhQKB21lc3NhZ2UYAiABKAlIAIgBAUIKCghfbWVzc2FnZSI6",
-            "CglEZWNrU3RhdGUSGQoFY2FyZHMYASADKAsyCi5nYW1lLkNhcmQSEgoKZGVh",
-            "bGVyTmFtZRgCIAEoCSIwCgRDYXJkEg4KBnZhbG9yZRgBIAEoBRIYCgRzZW1l",
-            "GAIgASgOMgouZ2FtZS5TZW1lIiMKEUluaXRpYWxCZXRSZXF1ZXN0Eg4KBmFt",
-            "b3VudBgBIAEoASo1CgRTZW1lEgkKBUNvcHBlEAASCgoGRGVuYXJpEAESCQoF",
-            "U3BhZGUQAhILCgdCYXN0b25pEAMyvwIKC0dhbWVTZXJ2aWNlEjwKCFBhc3NU",
-            "dXJuEhUuZ2FtZS5QYXNzVHVyblJlcXVlc3QaGS5nYW1lLkdhbWVTZXJ2aWNl",
-            "UmVzcG9uc2USNgoIU3luY0RlY2sSDy5nYW1lLkRlY2tTdGF0ZRoZLmdhbWUu",
-            "R2FtZVNlcnZpY2VSZXNwb25zZRJDCg1Bc2tJbml0aWFsQmV0EhcuZ2FtZS5J",
-            "bml0aWFsQmV0UmVxdWVzdBoZLmdhbWUuR2FtZVNlcnZpY2VSZXNwb25zZRI6",
-            "CgdFbmRHYW1lEhQuZ2FtZS5FbmRHYW1lUmVxdWVzdBoZLmdhbWUuR2FtZVNl",
-            "cnZpY2VSZXNwb25zZRI5CgtTaWduYWxDcmFzaBIPLmdhbWUuQ3Jhc2hJbmZv",
-            "GhkuZ2FtZS5HYW1lU2VydmljZVJlc3BvbnNlQhGqAg5DYXJ0YUFsdGEuR3Jw",
-            "Y2IGcHJvdG8z"));
+            "bGF5ZXJOYW1lGAIgASgJIiUKEkdhbWVTZXJ2aWNlUmVxdWVzdBIPCgdtZXNz",
+            "YWdlGAEgASgJIkcKE0dhbWVTZXJ2aWNlUmVzcG9uc2USDgoGc3RhdHVzGAEg",
+            "ASgIEhQKB21lc3NhZ2UYAiABKAlIAIgBAUIKCghfbWVzc2FnZSI6CglEZWNr",
+            "U3RhdGUSGQoFY2FyZHMYASADKAsyCi5nYW1lLkNhcmQSEgoKZGVhbGVyTmFt",
+            "ZRgCIAEoCSIwCgRDYXJkEg4KBnZhbG9yZRgBIAEoBRIYCgRzZW1lGAIgASgO",
+            "MgouZ2FtZS5TZW1lIiMKEUluaXRpYWxCZXRSZXF1ZXN0Eg4KBmFtb3VudBgB",
+            "IAEoASo1CgRTZW1lEgkKBUNvcHBlEAASCgoGRGVuYXJpEAESCQoFU3BhZGUQ",
+            "AhILCgdCYXN0b25pEAMyxwMKC0dhbWVTZXJ2aWNlEjwKCFBhc3NUdXJuEhUu",
+            "Z2FtZS5QYXNzVHVyblJlcXVlc3QaGS5nYW1lLkdhbWVTZXJ2aWNlUmVzcG9u",
+            "c2USNgoIU3luY0RlY2sSDy5nYW1lLkRlY2tTdGF0ZRoZLmdhbWUuR2FtZVNl",
+            "cnZpY2VSZXNwb25zZRJDCg1Bc2tJbml0aWFsQmV0EhcuZ2FtZS5Jbml0aWFs",
+            "QmV0UmVxdWVzdBoZLmdhbWUuR2FtZVNlcnZpY2VSZXNwb25zZRI6CgdFbmRH",
+            "YW1lEhQuZ2FtZS5FbmRHYW1lUmVxdWVzdBoZLmdhbWUuR2FtZVNlcnZpY2VS",
+            "ZXNwb25zZRI5CgtTaWduYWxDcmFzaBIPLmdhbWUuQ3Jhc2hJbmZvGhkuZ2Ft",
+            "ZS5HYW1lU2VydmljZVJlc3BvbnNlEjsKBFBpbmcSGC5nYW1lLkdhbWVTZXJ2",
+            "aWNlUmVxdWVzdBoZLmdhbWUuR2FtZVNlcnZpY2VSZXNwb25zZRJJChJUYWtl",
+            "Q29udHJvbFJlcXVlc3QSGC5nYW1lLkdhbWVTZXJ2aWNlUmVxdWVzdBoZLmdh",
+            "bWUuR2FtZVNlcnZpY2VSZXNwb25zZUIRqgIOQ2FydGFBbHRhLkdycGNiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CartaAlta.Grpc.Seme), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.PassTurnRequest), global::CartaAlta.Grpc.PassTurnRequest.Parser, new[]{ "Dealer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.EndGameRequest), global::CartaAlta.Grpc.EndGameRequest.Parser, new[]{ "ToRemove" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.CrashInfo), global::CartaAlta.Grpc.CrashInfo.Parser, new[]{ "NodeAddress", "PlayerName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.GameServiceRequest), global::CartaAlta.Grpc.GameServiceRequest.Parser, new[]{ "Message" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.GameServiceResponse), global::CartaAlta.Grpc.GameServiceResponse.Parser, new[]{ "Status", "Message" }, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.DeckState), global::CartaAlta.Grpc.DeckState.Parser, new[]{ "Cards", "DealerName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::CartaAlta.Grpc.Card), global::CartaAlta.Grpc.Card.Parser, new[]{ "Valore", "Seme" }, null, null, null, null),
@@ -672,6 +677,195 @@ namespace CartaAlta.Grpc {
 
   }
 
+  public sealed partial class GameServiceRequest : pb::IMessage<GameServiceRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GameServiceRequest> _parser = new pb::MessageParser<GameServiceRequest>(() => new GameServiceRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GameServiceRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GameServiceRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GameServiceRequest(GameServiceRequest other) : this() {
+      message_ = other.message_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GameServiceRequest Clone() {
+      return new GameServiceRequest(this);
+    }
+
+    /// <summary>Field number for the "message" field.</summary>
+    public const int MessageFieldNumber = 1;
+    private string message_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Message {
+      get { return message_; }
+      set {
+        message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GameServiceRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GameServiceRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Message != other.Message) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Message.Length != 0) hash ^= Message.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Message.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Message);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Message.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Message);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Message.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GameServiceRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Message.Length != 0) {
+        Message = other.Message;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Message = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Message = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   public sealed partial class GameServiceResponse : pb::IMessage<GameServiceResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -686,7 +880,7 @@ namespace CartaAlta.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[3]; }
+      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -926,7 +1120,7 @@ namespace CartaAlta.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[4]; }
+      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1141,7 +1335,7 @@ namespace CartaAlta.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[5]; }
+      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1367,7 +1561,7 @@ namespace CartaAlta.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[6]; }
+      get { return global::CartaAlta.Grpc.GameReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

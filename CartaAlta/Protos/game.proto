@@ -10,6 +10,8 @@ service GameService {
   rpc AskInitialBet(InitialBetRequest) returns (GameServiceResponse);
   rpc EndGame(EndGameRequest) returns (GameServiceResponse);
   rpc SignalCrash(CrashInfo) returns (GameServiceResponse);
+  rpc Ping(GameServiceRequest) returns (GameServiceResponse);
+  rpc TakeControlRequest(GameServiceRequest) returns (GameServiceResponse);
 }
 
 message PassTurnRequest {
@@ -23,6 +25,10 @@ message EndGameRequest {
 message CrashInfo {
     string nodeAddress = 1;
     string playerName = 2;
+}
+
+message GameServiceRequest {
+    string message = 1;
 }
 
 message GameServiceResponse{

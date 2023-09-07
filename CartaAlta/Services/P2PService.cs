@@ -272,10 +272,56 @@ namespace CartaAlta.P2P
             }
         }
 
+        public void SendTakeControlRequest(Peer lastPlayer)
+        {
+            Console.WriteLine("-- Sending take control request to {0}", lastPlayer.Address);
+            GrpcChannel channel = GrpcChannel.ForAddress(lastPlayer.Address);
+            var gameService = new GameService.GameServiceClient(channel);
+            try
+            {
+                var response = gameService.TakeControlRequest(new GameServiceRequest { Message = "Take control"});
+                if (response.Status == true)
+                    Console.WriteLine("--- Done: received take control request ack from {0}", lastPlayer.Address);
+                else
+                    Console.WriteLine("--- Take control request sent but ack not received from {0}", lastPlayer.Address);
+            }
+            catch (RpcException)
+            {
+                Console.WriteLine($"--- Fail: impossible to reach {lastPlayer.Address}, it may have crashed");
+                // HandlePeerCrash(peer);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(".. Failed to send take control request to {0}", lastPlayer.Address);
+                // throw new GameException(".. Failed to send syn deck request to {0}", peer.Address);
+            }
+        }
+
         public void Stop()
         {
             if(!(_endGameRequestSent))
                 NotifyEndGame();
+        }
+
+        internal static bool Ping(Peer peer)
+        {
+            GrpcChannel channel = GrpcChannel.ForAddress(peer.Address);
+            var gameService = new GameService.GameServiceClient(channel);
+            try
+            {
+                var response = gameService.Ping(new GameServiceRequest{ Message = "Ping!"});
+                if (response.Status == true) return true;
+                else return false;
+            }
+            catch (RpcException)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
