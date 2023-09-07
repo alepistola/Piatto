@@ -151,6 +151,10 @@ namespace CartaAlta.P2P
                 else
                     Console.WriteLine("--- Pass turn request sent but ack not received from {0} (Err: {1})", _adjacentNode.Address, response.Message);
             }
+            catch(GameException)
+            {
+                Console.WriteLine($"--- Fail: an error occured while trying to contact adjacent node");
+            }
             catch (RpcException)
             {
                 Console.WriteLine($"--- Fail: impossible to reach {_adjacentNode.Address}, it may have crashed");
