@@ -108,14 +108,6 @@ namespace CartaAlta.Grpc {
         __Marshaller_game_GameServiceRequest,
         __Marshaller_game_GameServiceResponse);
 
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::CartaAlta.Grpc.GameServiceRequest, global::CartaAlta.Grpc.GameServiceResponse> __Method_TakeControlRequest = new grpc::Method<global::CartaAlta.Grpc.GameServiceRequest, global::CartaAlta.Grpc.GameServiceResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "TakeControlRequest",
-        __Marshaller_game_GameServiceRequest,
-        __Marshaller_game_GameServiceResponse);
-
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -158,12 +150,6 @@ namespace CartaAlta.Grpc {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::CartaAlta.Grpc.GameServiceResponse> Ping(global::CartaAlta.Grpc.GameServiceRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::CartaAlta.Grpc.GameServiceResponse> TakeControlRequest(global::CartaAlta.Grpc.GameServiceRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -317,26 +303,6 @@ namespace CartaAlta.Grpc {
       {
         return CallInvoker.AsyncUnaryCall(__Method_Ping, null, options, request);
       }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::CartaAlta.Grpc.GameServiceResponse TakeControlRequest(global::CartaAlta.Grpc.GameServiceRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return TakeControlRequest(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::CartaAlta.Grpc.GameServiceResponse TakeControlRequest(global::CartaAlta.Grpc.GameServiceRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_TakeControlRequest, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::CartaAlta.Grpc.GameServiceResponse> TakeControlRequestAsync(global::CartaAlta.Grpc.GameServiceRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return TakeControlRequestAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::CartaAlta.Grpc.GameServiceResponse> TakeControlRequestAsync(global::CartaAlta.Grpc.GameServiceRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_TakeControlRequest, null, options, request);
-      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override GameServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -356,8 +322,7 @@ namespace CartaAlta.Grpc {
           .AddMethod(__Method_AskInitialBet, serviceImpl.AskInitialBet)
           .AddMethod(__Method_EndGame, serviceImpl.EndGame)
           .AddMethod(__Method_SignalCrash, serviceImpl.SignalCrash)
-          .AddMethod(__Method_Ping, serviceImpl.Ping)
-          .AddMethod(__Method_TakeControlRequest, serviceImpl.TakeControlRequest).Build();
+          .AddMethod(__Method_Ping, serviceImpl.Ping).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -373,7 +338,6 @@ namespace CartaAlta.Grpc {
       serviceBinder.AddMethod(__Method_EndGame, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.EndGameRequest, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.EndGame));
       serviceBinder.AddMethod(__Method_SignalCrash, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.CrashInfo, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.SignalCrash));
       serviceBinder.AddMethod(__Method_Ping, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.GameServiceRequest, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.Ping));
-      serviceBinder.AddMethod(__Method_TakeControlRequest, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::CartaAlta.Grpc.GameServiceRequest, global::CartaAlta.Grpc.GameServiceResponse>(serviceImpl.TakeControlRequest));
     }
 
   }

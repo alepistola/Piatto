@@ -159,6 +159,7 @@ namespace CartaAlta.P2P
             {
                 Console.WriteLine($"--- Fail: impossible to reach {_adjacentNode.Address}, it may have crashed");
                 HandlePeerCrash(_adjacentNode);
+                PassTurn(nextDealer);                
             }
             catch (Exception ex)
             {
@@ -304,7 +305,7 @@ namespace CartaAlta.P2P
                 NotifyEndGame();
         }
 
-        internal static bool Ping(Peer peer)
+        public bool Ping(Peer peer)
         {
             GrpcChannel channel = GrpcChannel.ForAddress(peer.Address);
             var gameService = new GameService.GameServiceClient(channel);

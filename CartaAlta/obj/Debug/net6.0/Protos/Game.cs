@@ -34,7 +34,7 @@ namespace CartaAlta.Grpc {
             "ZRgCIAEoCSIwCgRDYXJkEg4KBnZhbG9yZRgBIAEoBRIYCgRzZW1lGAIgASgO",
             "MgouZ2FtZS5TZW1lIiMKEUluaXRpYWxCZXRSZXF1ZXN0Eg4KBmFtb3VudBgB",
             "IAEoASo1CgRTZW1lEgkKBUNvcHBlEAASCgoGRGVuYXJpEAESCQoFU3BhZGUQ",
-            "AhILCgdCYXN0b25pEAMyxwMKC0dhbWVTZXJ2aWNlEjwKCFBhc3NUdXJuEhUu",
+            "AhILCgdCYXN0b25pEAMy/AIKC0dhbWVTZXJ2aWNlEjwKCFBhc3NUdXJuEhUu",
             "Z2FtZS5QYXNzVHVyblJlcXVlc3QaGS5nYW1lLkdhbWVTZXJ2aWNlUmVzcG9u",
             "c2USNgoIU3luY0RlY2sSDy5nYW1lLkRlY2tTdGF0ZRoZLmdhbWUuR2FtZVNl",
             "cnZpY2VSZXNwb25zZRJDCg1Bc2tJbml0aWFsQmV0EhcuZ2FtZS5Jbml0aWFs",
@@ -42,10 +42,8 @@ namespace CartaAlta.Grpc {
             "YW1lEhQuZ2FtZS5FbmRHYW1lUmVxdWVzdBoZLmdhbWUuR2FtZVNlcnZpY2VS",
             "ZXNwb25zZRI5CgtTaWduYWxDcmFzaBIPLmdhbWUuQ3Jhc2hJbmZvGhkuZ2Ft",
             "ZS5HYW1lU2VydmljZVJlc3BvbnNlEjsKBFBpbmcSGC5nYW1lLkdhbWVTZXJ2",
-            "aWNlUmVxdWVzdBoZLmdhbWUuR2FtZVNlcnZpY2VSZXNwb25zZRJJChJUYWtl",
-            "Q29udHJvbFJlcXVlc3QSGC5nYW1lLkdhbWVTZXJ2aWNlUmVxdWVzdBoZLmdh",
-            "bWUuR2FtZVNlcnZpY2VSZXNwb25zZUIRqgIOQ2FydGFBbHRhLkdycGNiBnBy",
-            "b3RvMw=="));
+            "aWNlUmVxdWVzdBoZLmdhbWUuR2FtZVNlcnZpY2VSZXNwb25zZUIRqgIOQ2Fy",
+            "dGFBbHRhLkdycGNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::CartaAlta.Grpc.Seme), }, null, new pbr::GeneratedClrTypeInfo[] {

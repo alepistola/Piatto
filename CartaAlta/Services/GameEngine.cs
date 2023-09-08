@@ -306,6 +306,12 @@ namespace CartaAlta.Services
             return true;
         }
 
+        public void EndGameCauseCrashed()
+        {
+            PrintEndGame(true);
+            _gameFinished = true;
+        }
+
         private static void BroadcastMove(Move mv)
         {
             // broadcast transaction to all peer not including myself.

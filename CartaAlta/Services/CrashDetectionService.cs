@@ -4,7 +4,6 @@ namespace CartaAlta.Services
 {
     public class CrashDetectionService
     {
-        private int _takeControlRequestReceived;
         private Timer _timer;
         private int _defaultTimeout;
         private string _myName;
@@ -16,7 +15,6 @@ namespace CartaAlta.Services
             _myName = DotNetEnv.Env.GetString("NODE_NAME");
             _defaultTimeout = Utils.Constants.DEFAULT_TIMEOUT;
             _timer = new Timer(SendTakeControlRequest, null, TimeSpan.FromSeconds(_defaultTimeout), TimeSpan.FromSeconds(_defaultTimeout));
-            _takeControlRequestReceived = 0;
         }
 
         private void StartTimer()
@@ -38,45 +36,56 @@ namespace CartaAlta.Services
 
         private void SendTakeControlRequest(object? state)
         {
+            var onlinePlayersName = GetActivePlayersName();
+
+            // controllo se vi è stato un almeno un crash
+            if (onlinePlayersName.Count() == ServicePool.DbService.PeerDb.GetAll().Count() && onlinePlayersName.Count() > 1)
+                return;
+
+
             // controllo se sono rimasto solo, in tal caso nessuno mi invierà una take control request quindi effettuo il turno
-            if (GetActivePlayersName().Count() < 1)
+            if (onlinePlayersName.Count() <= 1)
             {
-                ServicePool.GameEngine.MakeTurnAndPass();
+                ServicePool.GameEngine.EndGameCauseCrashed();
                 return;
             }
 
-            // invia all'ultimo giocatore ATTIVO una richiesta per prendere il controllo del gioco
-            // se sono io non faccio niente in quanto aspetto qualcuno mi invio una take control request
-            var lastActivePlayer = GetLastActivePlayerName();
+            var lastActivePlayer = GetLastActivePlayerName(onlinePlayersName);
+
+            // se non sono il giocatore che deve passare il turno ritorno
             if (!(lastActivePlayer.Name == _myName))
-                ServicePool.P2PService.SendTakeControlRequest(lastActivePlayer);
+                return;
+
+            if (IsDealerOnline())
+                ServicePool.GameEngine.PassTurn(false);
+            else
+                ServicePool.GameEngine.PassTurn(true);
         }
 
-        private Peer GetLastActivePlayerName()
+
+        private Peer GetLastActivePlayerName(IEnumerable<string> onlinePlayers)
         {
-            var found = false;
-            var nr_checked = 0;
-            var peersPossiblyOnline = ServicePool.DbService.PeerDb.GetAllToList();
-            peersPossiblyOnline.RemoveAll(peer => peer.Name == _myName);
+            var lastActivePlayer = ServicePool.DbService.MoveDb.GetLast(onlinePlayers.Count())
+                                                                    .Select(mv => mv.Author).
+                                                                    Intersect(onlinePlayers)
+                                                                    .First();
 
-            while(!found || nr_checked >= peersPossiblyOnline.Count)
-            {
-                var isOnline = P2P.P2PService.Ping(peersPossiblyOnline.ElementAt(nr_checked));
-                if (isOnline) found = true;
-                else nr_checked++;
-            }
-
-            return found ? peersPossiblyOnline.ElementAt(nr_checked) : ServicePool.DbService.PeerDb.GetByName(_myName);
+            return ServicePool.DbService.PeerDb.GetByName(lastActivePlayer);
         }
+
+
 
         private IEnumerable<string> GetActivePlayersName()
         {
             var peersPossiblyOnline = ServicePool.DbService.PeerDb.GetAllToList();
+            // peersPossiblyOnline.RemoveAll(peer => peer.Name == _myName);
+            List<string> playersName = new();
             foreach (var peer in peersPossiblyOnline)
             {
-                if (P2P.P2PService.Ping(peer))
-                    yield return peer.Name;
+                if (ServicePool.P2PService.Ping(peer))
+                    playersName.Add(peer.Name);
             }
+            return playersName;
         }
 
         private bool IsDealerOnline()
@@ -86,22 +95,7 @@ namespace CartaAlta.Services
 
         internal void UpdateState()
         {
-            _takeControlRequestReceived = 0;
             RestartTimer();
-        }
-
-        internal void ProcessTakeControlRequest(GameServiceRequest request)
-        {
-            _takeControlRequestReceived += 1;
-            var nrOnlinePeers = GetActivePlayersName().Count();
-            if (!(_takeControlRequestReceived >= nrOnlinePeers)) return;
-            if (IsDealerOnline())
-                ServicePool.GameEngine.MakeTurnAndPass();
-            else
-            {
-                ServicePool.GameEngine.IsDealer = true;
-                ServicePool.GameEngine.DealerTurn();
-            }
         }
     }
 }

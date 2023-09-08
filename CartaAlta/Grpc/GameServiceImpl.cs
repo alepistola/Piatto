@@ -187,16 +187,5 @@ namespace CartaAlta.Grpc
                 });
             }
         }
-
-        public override Task<GameServiceResponse> TakeControlRequest(GameServiceRequest request, ServerCallContext context)
-        {
-            Task.Run(() => ServicePool.CrashDetectionService.ProcessTakeControlRequest(request));
-
-            return Task.FromResult(new GameServiceResponse
-            {
-                Status = true,
-                Message = "Take control request correctly received"
-            });
-        }
     }
 }
