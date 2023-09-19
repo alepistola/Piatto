@@ -310,6 +310,7 @@ namespace CartaAlta.Services
         {
             PrintEndGame(true);
             _gameFinished = true;
+            Environment.Exit(0);
         }
 
         private static void BroadcastMove(Move mv)

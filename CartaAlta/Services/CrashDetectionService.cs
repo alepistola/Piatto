@@ -78,7 +78,6 @@ namespace CartaAlta.Services
         private IEnumerable<string> GetActivePlayersName()
         {
             var peersPossiblyOnline = ServicePool.DbService.PeerDb.GetAllToList();
-            // peersPossiblyOnline.RemoveAll(peer => peer.Name == _myName);
             List<string> playersName = new();
             foreach (var peer in peersPossiblyOnline)
             {
