@@ -31,7 +31,7 @@ namespace Lobby.Services
             var openMatch = SearchForOpenMatch();
             var match = openMatch ?? CreateMatch(null);
             match.AddPlayer(peer);
-            Task.Run(CheckAndNotify);
+            Task.Run(() => CheckAndNotify(match));
             return match;
         }
 
@@ -47,22 +47,21 @@ namespace Lobby.Services
             return match;
         }
 
-        public void CheckAndNotify()
+        public void CheckAndNotify(IMatch match)
         {
-            Parallel.ForEach(_matches, match =>
+            Console.WriteLine("Checking game nr. {0} ({1})", match.GetGameNr(), ExtensionMethods.Extensions.StringJoin(match.GetPlayers().Select(p => p.Address).ToArray(), ", "));
+            if (match.IsFull())
             {
-                Console.WriteLine("Checking game nr. {0} ({1})", match.GetGameNr(), ExtensionMethods.Extensions.StringJoin(match.GetPlayers().Select(p => p.Address).ToArray(), ", "));
-                if (match.IsFull()) {
-                    Thread.Sleep(5000);
-                    NotifyPartecipants(match);
-                    RemoveMatch(match);
-                }
-            });
+                Thread.Sleep(5000);
+                NotifyPartecipants(match);
+                RemoveMatch(match);
+            }
+            
         }
 
         private void RemoveMatch(IMatch match)
         {
-            _matches.RemoveAll(m => m.GetGameNr == match.GetGameNr);
+            _matches.RemoveAll(m => m.GetGameNr() == match.GetGameNr());
         }
 
         private static void NotifyPartecipants(IMatch match)
