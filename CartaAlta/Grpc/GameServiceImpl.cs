@@ -167,5 +167,25 @@ namespace CartaAlta.Grpc
                 });
             }
         }
+
+        public override Task<GameServiceResponse> Ping(GameServiceRequest request, ServerCallContext context)
+        {
+            try
+            {
+                return Task.FromResult(new GameServiceResponse
+                {
+                    Status = true,
+                    Message = "Ping received"
+                });
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(new GameServiceResponse
+                {
+                    Status = false,
+                    Message = "Error while processing ping request"
+                });
+            }
+        }
     }
 }

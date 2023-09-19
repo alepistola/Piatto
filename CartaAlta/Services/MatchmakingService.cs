@@ -37,7 +37,7 @@ namespace CartaAlta.Services
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("... Stopping Matchmaking service");
         }
     }
 }

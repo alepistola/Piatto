@@ -12,7 +12,7 @@ namespace CartaAlta.Grpc
             try
             {
                 ServicePool.DbService.MoveDb.Add(req.Move);
-                ServicePool.GameEngine.UpdateState(req.Move);
+                UpdateStatesWrt(req.Move);
 
                 return Task.FromResult(new MoveStatus
                 {
@@ -30,6 +30,11 @@ namespace CartaAlta.Grpc
 
             }            
         }
-        
+
+        private static void UpdateStatesWrt(Move mv)
+        {
+            ServicePool.GameEngine.UpdateState(mv);
+            ServicePool.CrashDetectionService.UpdateState();
+        }
     }
 }

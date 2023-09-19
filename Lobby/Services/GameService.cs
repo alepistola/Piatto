@@ -89,14 +89,6 @@ namespace Lobby.Services
                     Console.WriteLine("--- Failed to send to {0}", player.Address);
                 }
             }
-
-
-            /*
-            Parallel.ForEach(match.GetPlayers(), player =>
-            {
-                
-            });
-            */
         }
     }
 }
