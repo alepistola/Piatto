@@ -389,13 +389,13 @@ namespace CartaAlta.Services
 
         private void PrintEndGame(bool win)
         {
-            Console.WriteLine("\n****** GAME FINISHED ******");
+            Console.WriteLine("\n********** GAME FINISHED **********");
 
-            if(!win) Console.WriteLine("****** You lost! ******");
+            if(!win) Console.WriteLine("**********   You lost!   **********");
             else {
                 var lastPlayerBalance = _players[_myName].Balance;
-                Console.WriteLine("*** Last player remained with {0}", lastPlayerBalance);
-                Console.WriteLine("*** You win!");
+                Console.WriteLine("*** Last player remained with {0} euro ***", lastPlayerBalance);
+                Console.WriteLine("*** You win! ***");
             }
 
             Console.WriteLine("\nPress Ctrl+C to shut down...");
