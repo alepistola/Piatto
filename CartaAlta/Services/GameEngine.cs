@@ -352,7 +352,7 @@ namespace CartaAlta.Services
         {
             Console.WriteLine($"Legit check for move #{mv.Number}");
 
-            bool legit = DrawAndCheckLegit(mv.DrawnCard);
+            bool legit = DrawAndLegitCheck(mv.DrawnCard);
             if (!legit)
                 throw new GameException($"Card drawn by {mv.Author} not consistent with the one locally unveiled!");
 
@@ -372,7 +372,7 @@ namespace CartaAlta.Services
         private void UpdateDealer(string dealerName) => DealerName = dealerName;
 
 
-        private bool DrawAndCheckLegit(Card remoteDrawn)
+        private bool DrawAndLegitCheck(Card remoteDrawn)
         {
             Card localUnveiled = _deck.Draw();
             if (remoteDrawn.Seme == localUnveiled.Seme && remoteDrawn.Valore == localUnveiled.Valore)

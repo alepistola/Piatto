@@ -15,15 +15,13 @@ namespace CartaAlta.Services
         // size will smaller for each database
         public DbService()
         {
-            //create db folder
-            if (!Directory.Exists(@"DbFiles"))
-                Directory.CreateDirectory(@"DbFiles");
-            else
-            {
-                File.Delete(@"DbFiles//move.db");
-                File.Delete(@"DbFiles//peer.db");
-            }
-                
+            // delete if already exists (for consistent move nr)
+            if (Directory.Exists(@"DbFiles"))
+                Directory.Delete(@"DbFiles", true);
+
+            // create new
+            Directory.CreateDirectory(@"DbFiles");
+
 
             DB_MOVE = InitializeDatabase(@"DbFiles//move.db");
             DB_PEER = InitializeDatabase(@"DbFiles//peer.db");

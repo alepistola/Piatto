@@ -33,8 +33,18 @@ namespace CartaAlta.Grpc
 
         private static void UpdateStatesWrt(Move mv)
         {
-            ServicePool.GameEngine.UpdateState(mv);
-            ServicePool.CrashDetectionService.UpdateState();
+            try
+            {
+                ServicePool.GameEngine.UpdateState(mv);
+                ServicePool.CrashDetectionService.UpdateState();
+            }
+            catch (Utils.GameException ex)
+            {
+                Console.WriteLine(ex.ExceptionMessage);
+                ServicePool.Stop();
+                Environment.Exit(0);
+            }
+            
         }
     }
 }
