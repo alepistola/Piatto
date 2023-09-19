@@ -28,8 +28,10 @@ namespace CartaAlta.Services
                 Console.WriteLine("... Correctly registered for game nr. {0} ({1}/4)", response.GameNumber, response.PlayerNumber);
             }
             catch(Exception ex) {
-                Console.WriteLine("... Connection problem while connecting to lobby, please retry!");
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine("... Connection problem while connecting to lobby, it may be offline!");
+                Console.WriteLine("... Try again restarting the application");
+                Environment.Exit(0);
+                // Console.WriteLine(ex.ToString());
             }
         }
 
