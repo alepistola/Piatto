@@ -7,13 +7,13 @@ namespace Lobby.Game
     {
         private readonly MatchSettings _matchSettings;
         private List<Peer> _players;
-        private int _dealerId;
+        private string _dealerName;
 
         public Match(MatchSettings settings)
         {
             _players = new List<Peer>();
             _matchSettings = settings;
-            _dealerId = -1;
+            _dealerName = "";
         }
 
         public bool AddPlayer(Peer peer) {
@@ -25,15 +25,13 @@ namespace Lobby.Game
         public string GetDealerName()
         {
             // just 4 debug
-            return "Ale";
+            // return "Ale";
 
-            /*
-            if (_dealerId == -1) {
+            if (String.IsNullOrEmpty(_dealerName)) {
                 var rnd = new Random();
-                _dealerId = _players.ElementAt(rnd.Next(0, GetPlayersNr())).Id;
+                _dealerName = _players.ElementAt(rnd.Next(0, GetPlayersNr())).Name;
             }
-            return _dealerId;
-            */
+            return _dealerName;
         }
 
         public int GetGameNr() {

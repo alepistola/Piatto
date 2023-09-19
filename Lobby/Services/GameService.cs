@@ -75,7 +75,7 @@ namespace Lobby.Services
                 {
                     var startMatchInfo = new StartMatchInfo();
                     startMatchInfo.PeerList.AddRange(match.GetPlayers());
-                    startMatchInfo.Dealer = (match.GetDealerName());
+                    startMatchInfo.Dealer = match.GetDealerName();
 
                     var response = matchmakingService.StartMatch(startMatchInfo);
                     if (response.Status == true)
