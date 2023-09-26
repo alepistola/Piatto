@@ -25,7 +25,7 @@ namespace CartaAlta.Services
             {
                 Console.WriteLine("... Node {0} ({1}) now sending a register for a match request", _nodeName, _nodeAddress);
                 var response = matchmakingService.RegisterForMatch(new Peer { Address = _nodeAddress, Name = _nodeName });
-                Console.WriteLine("... Correctly registered for game nr. {0} ({1}/4)", response.GameNumber, response.PlayerNumber);
+                Console.WriteLine("... Correctly registered for game nr. {0} ({1})", response.GameNumber, response.PlayerNumber);
             }
             catch(Exception ex) {
                 Console.WriteLine("... Connection problem while connecting to lobby, it may be offline!");
