@@ -7,6 +7,7 @@ namespace CartaAlta.Services
     public class GameEngine
     {
         public bool IsDealer { get; set; }
+        public bool IsMakingTurn { get; set; }
         public string DealerName { get; private set; }
         private int TurnNr { get; set; }
 
@@ -27,9 +28,8 @@ namespace CartaAlta.Services
             TurnNr = 0;
             IsDealer = (dealerName == _myName);
             _gameFinished = false;
+            IsMakingTurn = false;
         }
-
-        
 
         public void SetSynDeck(List<Card> cards) => _deck = new Deck(cards);
 
@@ -51,6 +51,8 @@ namespace CartaAlta.Services
                 return;
             }
 
+            IsMakingTurn = true;
+
             if (TurnNr == 0)
             {
                 ShuffleDeck();
@@ -60,6 +62,8 @@ namespace CartaAlta.Services
             MakeTurn();
 
             TurnNr++;
+
+            IsMakingTurn = false;
 
             if (!_gameFinished)
                 PassTurn(false);
@@ -100,6 +104,8 @@ namespace CartaAlta.Services
             if (!(CheckForMinPlayers()))
                 return;
 
+            IsMakingTurn = true;
+
             if (_piatto <= 0)
                 AskInitialBet();
 
@@ -122,6 +128,7 @@ namespace CartaAlta.Services
                 DrawnCard = card
             };
             BroadcastMove(move);
+            IsMakingTurn = false;
             CheckIfILost();
 
             CheckForMinPlayers();
@@ -399,6 +406,8 @@ namespace CartaAlta.Services
             }
 
             Console.WriteLine("\nPress Ctrl+C to shut down...");
+            // Environment.Exit(0);
+
         }
 
 
