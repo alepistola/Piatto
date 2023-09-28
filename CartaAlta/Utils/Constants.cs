@@ -8,7 +8,7 @@
         public const string MESSAGE_TYPE_CLEAR_HISTORY= "CLEAR_MOVES";
         public const double MIN_BET = 0.5;
         public const double DEFAULT_BALANCE = 50.0;
-        public const int DEFAULT_TIMEOUT = 45;
+        public const int DEFAULT_TIMEOUT = 25;
     }
 }
 

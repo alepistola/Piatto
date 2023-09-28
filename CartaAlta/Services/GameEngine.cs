@@ -67,6 +67,13 @@ namespace CartaAlta.Services
 
             if (!_gameFinished)
                 PassTurn(false);
+            else
+            {
+                Task.Run(() => PassTurn(false));
+                Environment.Exit(0);
+            }
+                       
+            
         }
 
 
@@ -140,6 +147,7 @@ namespace CartaAlta.Services
             {
                 ServicePool.P2PService.NotifyEndGame();
                 PrintEndGame(false); // Send remove notify to others peer? or just leave and let them find out?
+                _gameFinished = true;
             }
                 
         }
@@ -148,7 +156,7 @@ namespace CartaAlta.Services
         {
             MakeTurn();
             if (_gameFinished)
-                return;
+                Environment.Exit(0);
             PassTurn(false);
         }
 
