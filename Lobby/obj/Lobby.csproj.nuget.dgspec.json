@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alessandro\\source\\repos\\CartaAlta\\Lobby\\Lobby.csproj": {}
+    "C:\\Users\\Alessandro\\source\\repos\\Piatto\\Lobby\\Lobby.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alessandro\\source\\repos\\CartaAlta\\Lobby\\Lobby.csproj": {
+    "C:\\Users\\Alessandro\\source\\repos\\Piatto\\Lobby\\Lobby.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alessandro\\source\\repos\\CartaAlta\\Lobby\\Lobby.csproj",
+        "projectUniqueName": "C:\\Users\\Alessandro\\source\\repos\\Piatto\\Lobby\\Lobby.csproj",
         "projectName": "Lobby",
-        "projectPath": "C:\\Users\\Alessandro\\source\\repos\\CartaAlta\\Lobby\\Lobby.csproj",
+        "projectPath": "C:\\Users\\Alessandro\\source\\repos\\Piatto\\Lobby\\Lobby.csproj",
         "packagesPath": "C:\\Users\\Alessandro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alessandro\\source\\repos\\CartaAlta\\Lobby\\obj\\",
+        "outputPath": "C:\\Users\\Alessandro\\source\\repos\\Piatto\\Lobby\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

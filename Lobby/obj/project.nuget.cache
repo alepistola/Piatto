@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b7vIgmwrRGH6lxjQy0+X/49LEJCg5SnEmY8wofHD0YhYscFZfCyIY5tUWy7Mgyw+RUzP6h4ZICu4bPfc3jDeaw==",
+  "dgSpecHash": "0N2HEOX02k0dUgUUkVjKCj5Q5uv7GwjkyWooLwQgzuKJBq9+j9Oo6zc8d6pnW/UE8+rfhbvUNdEHqjWgoxMjbw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alessandro\\source\\repos\\CartaAlta\\Lobby\\Lobby.csproj",
+  "projectFilePath": "C:\\Users\\Alessandro\\source\\repos\\Piatto\\Lobby\\Lobby.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alessandro\\.nuget\\packages\\dotnetenv\\2.5.0\\dotnetenv.2.5.0.nupkg.sha512",
     "C:\\Users\\Alessandro\\.nuget\\packages\\google.protobuf\\3.23.4\\google.protobuf.3.23.4.nupkg.sha512",

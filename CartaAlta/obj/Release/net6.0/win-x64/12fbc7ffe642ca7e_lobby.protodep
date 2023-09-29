@@ -1,2 +1,0 @@
-obj\Release\net6.0\win-x64\Protos/Lobby.cs \
-obj\Release\net6.0\win-x64\Protos/LobbyGrpc.cs: Protos/lobby.proto

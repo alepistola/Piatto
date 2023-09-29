@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Piatto.Grpc";
+
+package lobby;
+
+service Matchmaking {
+	rpc RegisterForMatch (Peer) returns (RegisterReply);
+	rpc StartMatch (StartMatchInfo) returns (StartMatchAck);
+}
+
+message Peer {
+	string name = 1;
+	string address = 2;
+}
+
+message RegisterReply {
+	int32 gameNumber = 1;
+	int32 playerNumber = 2;
+}
+
+message StartMatchInfo {
+	repeated Peer peerList = 1;
+	string dealer = 2;
+}
+
+message StartMatchAck {
+	bool status = 1;
+}
